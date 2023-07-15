@@ -18,7 +18,6 @@ import com.example.house_analysis.R
 import com.example.house_analysis.databinding.FragmentTasksBinding
 import com.example.house_analysis.network.api.requests.RequestRepository
 import com.example.house_analysis.network.model.request.TaskRequestModel
-import com.example.house_analysis.network.model.response.TasksResponse
 import com.example.house_analysis.taskLogic.ItemClickSupport
 import com.example.house_analysis.taskLogic.TaskListAdapter
 import com.google.android.material.textfield.TextInputEditText
@@ -27,7 +26,6 @@ import kotlinx.coroutines.launch
 class TasksFragment : Fragment() {
     private lateinit var binding : FragmentTasksBinding
     private lateinit var recyclerView: RecyclerView
-    private val networkRepository = RequestRepository()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,8 +51,8 @@ class TasksFragment : Fragment() {
     private fun initRecycler() {
         recyclerView = binding.rvTasks
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.adapter = TaskListAdapter()
         setItemRecyclerListeners()
-        fillRecycler()
     }
 
     private fun setItemRecyclerListeners() {
@@ -72,16 +70,8 @@ class TasksFragment : Fragment() {
             })
     }
 
-    private fun fillRecycler() {
-        lifecycleScope.launch {
-            val tasks = networkRepository.getTasks()
-            recyclerView.adapter = TaskListAdapter(tasks)
-            ifNoTasks(tasks)
-        }
-    }
-
-    private fun ifNoTasks(tasks: ArrayList<TasksResponse>) {
-        if (tasks.isEmpty()) {
+    private fun ifNoTasks() {
+        if ((recyclerView.adapter as TaskListAdapter).dataTransfer.tasks.isEmpty()) {
             binding.ifTasksNotExists.visibility = View.VISIBLE
             binding.ifTasksExists.visibility = View.GONE
         }
@@ -102,6 +92,7 @@ class TasksFragment : Fragment() {
         layoutParams?.height = WindowManager.LayoutParams.WRAP_CONTENT // Set height to wrap content
 
         dialog.findViewById<ImageView>(R.id.closeDialog).setOnClickListener {
+            (recyclerView.adapter as TaskListAdapter).dataTransfer.deleteChosenTasks() // TODO
             dialog.dismiss()
         }
 
@@ -110,17 +101,25 @@ class TasksFragment : Fragment() {
             val from = dialog.findViewById<TextInputEditText>(R.id.text_from).text.toString().toInt()
             val to = dialog.findViewById<TextInputEditText>(R.id.text_to).text.toString().toInt()
 
-            lifecycleScope.launch {
-                val taskId = networkRepository.createTask(TaskRequestModel(address, from, to))
-                val task = networkRepository.getTask(taskId)
-                val s = 1
-            }
+            RequestHelper().createTask(address, from, to)
+
             dialog.dismiss()
         }
 
         window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.setCancelable(false)
         dialog.show()
+    }
+
+    inner class RequestHelper {
+        private val networkRepository = RequestRepository
+        fun createTask(address: String, from: Int, to: Int) {
+            lifecycleScope.launch {
+                networkRepository.createTask(TaskRequestModel(address, from, to))
+                (recyclerView.adapter as TaskListAdapter).dataTransfer.reloadList()
+
+            }
+        }
     }
 
 }

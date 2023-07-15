@@ -7,6 +7,7 @@ import com.example.house_analysis.network.model.request.UserRegisterData
 import com.example.house_analysis.network.model.response.TaskWithSubtasks
 import com.example.house_analysis.network.model.response.TasksResponse
 import com.example.house_analysis.network.model.response.TokenResponse
+import io.reactivex.Completable
 import io.reactivex.Observable
 import okhttp3.OkHttpClient
 import retrofit2.Response
@@ -30,7 +31,7 @@ interface ApiService {
     fun getTask(@Path("taskId") taskId: Int): Observable<TasksResponse>
 
     @DELETE("tasks/{taskId}")
-    fun deleteTask(@Path("taskId") taskId: Int)
+    fun deleteTask(@Path("taskId") taskId: Int): Completable
 
     @PATCH("tasks/{taskId}/subtasks/replace")
     fun replaceFloorAndLoungeForSubtask(@Path("taskId") taskId: Int, @Body request: LoungeFloorModel): Observable<Response<Unit>>

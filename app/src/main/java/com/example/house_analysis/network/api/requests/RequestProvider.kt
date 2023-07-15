@@ -8,6 +8,7 @@ import com.example.house_analysis.network.model.request.UserRegisterData
 import com.example.house_analysis.network.model.response.TaskWithSubtasks
 import com.example.house_analysis.network.model.response.TasksResponse
 import com.example.house_analysis.network.model.response.TokenResponse
+import io.reactivex.Completable
 import io.reactivex.Observable
 import retrofit2.Response
 
@@ -25,7 +26,7 @@ class RequestProvider(private val apiService: ApiService) {
         return apiService.createTask(taskInfo)
     }
 
-    fun deleteTask(taskId: Int) {
+    fun deleteTask(taskId: Int): Completable {
         return apiService.deleteTask(taskId)
     }
 

@@ -20,7 +20,7 @@ import kotlinx.coroutines.launch
 class SignInActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignInBinding
 
-    private val networkRepository = RequestRepository()
+    private val networkRepository = RequestRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

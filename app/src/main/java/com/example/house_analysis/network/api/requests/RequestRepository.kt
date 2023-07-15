@@ -8,7 +8,7 @@ import com.example.house_analysis.network.model.request.TaskRequestModel
 import com.example.house_analysis.network.model.request.UserLoginData
 import com.example.house_analysis.network.model.request.UserRegisterData
 
-class RequestRepository {
+object RequestRepository {
     private val networkRepository = RequestRepositoryProvider.provideRequestRepository()
 
     private val getRepo = GetRequestsRepo(networkRepository)
@@ -20,5 +20,5 @@ class RequestRepository {
     suspend fun getTasks() = getRepo.getTasks()
     suspend fun getTask(taskId: Int) = getRepo.getTask(taskId)
     suspend fun createTask(taskInfo: TaskRequestModel) = postRepo.createTask(taskInfo)
-    fun deleteTask(taskId: Int) = deleteRepo.deleteTask(taskId)
+    fun deleteTask(taskId: Int) { deleteRepo.deleteTask(taskId) }
 }

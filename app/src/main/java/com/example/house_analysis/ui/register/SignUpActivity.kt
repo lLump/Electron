@@ -22,7 +22,7 @@ import java.util.*
 
 class SignUpActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignUpBinding
-    private val networkRepository = RequestRepository()
+    private val networkRepository = RequestRepository
 
     private var selectedYear = 0
     private var selectedMonth = 0
