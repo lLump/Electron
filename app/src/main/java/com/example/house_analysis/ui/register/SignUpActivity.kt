@@ -181,7 +181,7 @@ class SignUpActivity : AppCompatActivity() {
                 }
 
             } else {
-                binding.password.error = resources.getString(R.string.errorOccured)
+                binding.password.error = resources.getString(R.string.error_occurred)
             }
             if (text.toString() == password2.editText?.text.toString() && text.toString().isNotEmpty()){
                 arePasswordsEqual = true

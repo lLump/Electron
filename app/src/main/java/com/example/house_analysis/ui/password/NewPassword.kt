@@ -3,14 +3,10 @@ package com.example.house_analysis.ui.password
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log.d
-import android.widget.Button
-import androidx.core.content.ContextCompat
 import androidx.core.widget.doOnTextChanged
 import com.example.house_analysis.R
 import com.example.house_analysis.databinding.ActivityNewPasswordBinding
 import com.example.house_analysis.ui.additional.SuccessfullyRegisteredActivity
-import com.google.android.material.textfield.TextInputLayout
 
 class NewPassword : AppCompatActivity() {
     private lateinit var binding:ActivityNewPasswordBinding
@@ -55,7 +51,7 @@ class NewPassword : AppCompatActivity() {
                 }
 
             } else {
-                binding.password.error = resources.getString(R.string.errorOccured)
+                binding.password.error = resources.getString(R.string.error_occurred)
             }
             if (text.toString() == password2.editText?.text.toString() && text.toString().isNotEmpty()){
                 arePasswordsEqual = true

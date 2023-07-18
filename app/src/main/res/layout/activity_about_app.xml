@@ -24,7 +24,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="15dp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="@string/aboutAppText"
+        android:text="@string/text_about_app"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"/>
@@ -43,7 +43,7 @@
         android:id="@+id/appVersion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/appVersion"
+        android:text="@string/app_version"
         android:textColor="@color/black"
         app:layout_constraintTop_toBottomOf="@id/appLogo"
         app:layout_constraintStart_toStartOf="parent"
@@ -69,7 +69,7 @@
                 android:layout_marginTop="4dp"
                 android:layout_marginStart="10dp"
                 android:layout_weight="1"
-                android:text="@string/textFeedBack"
+                android:text="@string/text_feedback"
                 android:textColor="@color/black"/>
 
             <ImageView
@@ -108,7 +108,7 @@
                 android:layout_marginTop="4dp"
                 android:layout_marginStart="10dp"
                 android:layout_weight="1"
-                android:text="@string/textPrivacyPolicy"
+                android:text="@string/privacy_policy"
                 android:textColor="@color/black"/>
 
             <ImageView
@@ -147,7 +147,7 @@
                 android:layout_marginTop="4dp"
                 android:layout_marginStart="10dp"
                 android:layout_weight="1"
-                android:text="@string/textTermsUse"
+                android:text="@string/terms_of_use"
                 android:textColor="@color/black"/>
 
             <ImageView
@@ -186,7 +186,7 @@
                 android:layout_marginTop="4dp"
                 android:layout_marginStart="10dp"
                 android:layout_weight="1"
-                android:text="@string/textEstimateApp"
+                android:text="@string/rate_app"
                 android:textColor="@color/black"/>
 
             <ImageView

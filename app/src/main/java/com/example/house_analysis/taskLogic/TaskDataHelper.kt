@@ -9,16 +9,6 @@ import kotlinx.coroutines.withContext
 
 class TaskDataHelper {
     private val networkRepository = RequestRepository
-
-//    fun getAllTasks() {
-//        CoroutineScope(Dispatchers.IO).launch {
-//            val tasks = networkRepository.getTasks()
-//            withContext(Dispatchers.Main) {
-//                rAdapter.dataTransfer.reloadList(tasks)
-//            }
-//        }
-//    }
-
     fun getAllTasks(callback: (ArrayList<TasksResponse>) -> Unit) {
         CoroutineScope(Dispatchers.IO).launch {
             val tasks = networkRepository.getTasks()

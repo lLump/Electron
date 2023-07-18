@@ -10,7 +10,7 @@
     <!-- Основной контент -->
 
     <RelativeLayout
-        android:id="@+id/relativeContainer"
+        android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"
 
         android:layout_height="0dp"

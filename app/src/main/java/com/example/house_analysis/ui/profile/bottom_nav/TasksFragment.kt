@@ -1,5 +1,6 @@
 package com.example.house_analysis.ui.profile.bottom_nav
 
+import android.app.AlertDialog
 import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -10,6 +11,7 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.ImageView
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -122,4 +124,12 @@ class TasksFragment : Fragment() {
         }
     }
 
+    public class TaskDialog: DialogFragment() {
+        override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+
+            val builder = AlertDialog.Builder(requireContext())
+
+            return super.onCreateDialog(savedInstanceState)
+        }
+    }
 }

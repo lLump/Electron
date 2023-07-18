@@ -34,7 +34,7 @@
                 android:id="@+id/accountLogin"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/accountLogup"
+                android:text="@string/account_sign_up"
                 android:textStyle="bold"
                 android:textColor="@color/black"
                 android:textSize="25sp"
@@ -47,7 +47,7 @@
                 android:layout_width="290dp"
                 android:layout_marginHorizontal="10dp"
                 android:layout_height="wrap_content"
-                android:text="@string/textSignup"
+                android:text="@string/sign_up_to"
                 android:textColor="@color/black"
                 android:textSize="15sp"
                 app:layout_constraintTop_toBottomOf="@id/accountLogin"
@@ -132,7 +132,7 @@
                         android:paddingStart="15dp"
                         android:textSize="16sp"
                         android:background="@drawable/input_outline"
-                        android:text="@string/datebirth"
+                        android:text="@string/birthdate"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"/>
                     <ImageView
@@ -185,9 +185,9 @@
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="@string/phone"
+                android:hint="@string/text_phone"
                 app:endIconDrawable="@drawable/clear"
-                app:helperText="@string/errorIfCountryNotCorrect"
+                app:helperText="@string/phone_hint"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/phoneText"
@@ -212,9 +212,9 @@
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="@string/email"
+                android:hint="@string/text_email"
                 app:endIconDrawable="@drawable/clear"
-                app:helperText="@string/confirmationWillBeSend"
+                app:helperText="@string/confirm_your_account"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
                 <com.google.android.material.textfield.TextInputEditText
 
@@ -241,8 +241,8 @@
                 android:layout_width="0dp"
 
                 android:layout_height="wrap_content"
-                android:hint="@string/password"
-                app:helperText="@string/errorOccured"
+                android:hint="@string/text_password"
+                app:helperText="@string/error_occurred"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/passwordText"
@@ -265,7 +265,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="@string/confirPassword"
+                android:hint="@string/confirm_password"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/confirmPasswordText"
@@ -290,7 +290,7 @@
                 <TextView
                     android:textColor="@color/black"
                     android:layout_width="wrap_content"
-                    android:text="@string/iHave18"
+                    android:text="@string/i_have_18"
                     android:layout_height="wrap_content"/>
 
             </LinearLayout>
@@ -310,7 +310,7 @@
                 <TextView
                     android:textColor="@color/black"
                     android:layout_width="wrap_content"
-                    android:text="@string/acceptTopolicy"
+                    android:text="@string/accept_policy"
                     android:layout_height="wrap_content"/>
 
 
@@ -323,7 +323,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="@string/signUp"
+                android:text="@string/sign_up"
                 android:textSize="17sp"
                 android:textStyle="bold"
                 app:layout_constraintRight_toRightOf="@+id/confirmPassword"
@@ -345,14 +345,14 @@
                     android:layout_marginRight="@dimen/marginTopForInputs"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/ifUHaveAccount"
+                    android:text="@string/do_you_have_account"
                     android:textColor="@color/black"/>
                 <TextView
                     android:id="@+id/textSignIn"
                     android:textColor="@color/main_color"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/signIn"/>
+                    android:text="@string/sign_in"/>
 
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

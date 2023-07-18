@@ -65,8 +65,6 @@ class TaskListAdapter:
                 dataHelper.deleteTask(it)
                 removeTask(it)
 
-//                Log.d("Network", "ID: ${it.first}")
-//                Log.d("Network", "POSITION: ${it.second}")
             }
             checkedTasksId.clear()
         }
