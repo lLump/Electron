@@ -132,7 +132,7 @@ class SignUpActivity : AppCompatActivity() {
 
             val datePicker = DatePickerDialog(
                 this,
-                R.style.dialogTheme,
+                R.style.datePickerTheme,
                 DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
                     selectedYear = year
                     selectedMonth = month

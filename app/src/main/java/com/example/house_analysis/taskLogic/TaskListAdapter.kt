@@ -13,7 +13,6 @@ class TaskListAdapter:
     val dataTransfer = TaskDataTransfer()
 
     init {
-//        dataHelper.getAllTasks()
         dataTransfer.reloadList()
     }
 

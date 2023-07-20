@@ -1,6 +1,5 @@
 package com.example.house_analysis.ui.profile.bottom_nav
 
-import android.app.AlertDialog
 import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -11,7 +10,6 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.ImageView
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,12 +20,24 @@ import com.example.house_analysis.network.api.requests.RequestRepository
 import com.example.house_analysis.network.model.request.TaskRequestModel
 import com.example.house_analysis.taskLogic.ItemClickSupport
 import com.example.house_analysis.taskLogic.TaskListAdapter
+import com.example.house_analysis.ui.profile.bottom_nav.dialogs.DotsAction
+import com.example.house_analysis.ui.profile.bottom_nav.dialogs.DotDialogListener
+import com.example.house_analysis.ui.profile.bottom_nav.dialogs.TaskDotsDialog
 import com.google.android.material.textfield.TextInputEditText
 import kotlinx.coroutines.launch
 
-class TasksFragment : Fragment() {
+class TasksFragment : Fragment(), DotDialogListener {
     private lateinit var binding : FragmentTasksBinding
     private lateinit var recyclerView: RecyclerView
+    inner class RequestHelper {
+        private val networkRepository = RequestRepository
+        fun createTask(address: String, from: Int, to: Int) {
+            lifecycleScope.launch {
+                networkRepository.createTask(TaskRequestModel(address, from, to))
+                (recyclerView.adapter as TaskListAdapter).dataTransfer.reloadList()
+            }
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,7 +53,6 @@ class TasksFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 
         binding.createTask.setOnClickListener {
             showTaskCreatorDialog()
@@ -94,7 +103,6 @@ class TasksFragment : Fragment() {
         layoutParams?.height = WindowManager.LayoutParams.WRAP_CONTENT // Set height to wrap content
 
         dialog.findViewById<ImageView>(R.id.closeDialog).setOnClickListener {
-            (recyclerView.adapter as TaskListAdapter).dataTransfer.deleteChosenTasks() // TODO
             dialog.dismiss()
         }
 
@@ -113,23 +121,20 @@ class TasksFragment : Fragment() {
         dialog.show()
     }
 
-    inner class RequestHelper {
-        private val networkRepository = RequestRepository
-        fun createTask(address: String, from: Int, to: Int) {
-            lifecycleScope.launch {
-                networkRepository.createTask(TaskRequestModel(address, from, to))
-                (recyclerView.adapter as TaskListAdapter).dataTransfer.reloadList()
-
-            }
-        }
+    fun openTaskDotsDialog() {
+        val dialog = TaskDotsDialog(R.layout.dialog_bottom_task)
+        dialog.listener = this
+        dialog.show(parentFragmentManager, "Tasks")
     }
 
-    public class TaskDialog: DialogFragment() {
-        override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-
-            val builder = AlertDialog.Builder(requireContext())
-
-            return super.onCreateDialog(savedInstanceState)
+    override fun onTaskDialogAction(action: DotsAction) {
+        when (action) {
+            DotsAction.MANAGER -> TODO()
+            DotsAction.PHONE -> TODO()
+            DotsAction.COMMENT -> TODO()
+            DotsAction.LABEL -> TODO()
+            DotsAction.EDIT -> TODO()
+            DotsAction.DELETE -> (recyclerView.adapter as TaskListAdapter).dataTransfer.deleteChosenTasks()
         }
     }
 }
