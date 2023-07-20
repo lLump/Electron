@@ -16,7 +16,7 @@ class TaskView(context: Context): LinearLayout(context) {
     init {
         inflate(context, R.layout.task_item, this)
 
-        checkBox = findViewById(R.id.isChecked)
+        checkBox = findViewById(R.id.isRememberPassword)
         checkBox1 = findViewById(R.id.isChecked1)
         address = findViewById(R.id.taskAddress)
         apartmentLis = findViewById(R.id.apartmentList)

@@ -63,7 +63,6 @@ class TaskListAdapter:
             checkedTasksId.forEach {
                 dataHelper.deleteTask(it)
                 removeTask(it)
-
             }
             checkedTasksId.clear()
         }

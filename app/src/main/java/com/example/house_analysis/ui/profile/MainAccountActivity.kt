@@ -86,9 +86,7 @@ class MainAccountActivity : AppCompatActivity() {
                         openFragment(SearchFragment())
                     R.id.add ->
                         openFragment(AddFragment())
-                    R.id.dots -> { bottomSheetDialog()
-                        true
-                    }
+                    R.id.dots -> bottomSheetDialog()
                     else -> false
                 }
             }
@@ -117,12 +115,4 @@ class MainAccountActivity : AppCompatActivity() {
 
         return true
     }
-
-   private fun createDotsListener(dialog: Dialog) =
-       View.OnClickListener {
-           when (it.id) {
-
-           }
-   }
-
 }

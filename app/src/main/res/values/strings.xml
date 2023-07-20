@@ -43,6 +43,7 @@
     <string name="enter_new_password">Введите новый пароль</string>
     <string name="password_validation">от 8 символов, только латинские буквы и цифры</string>
     <string name="change_password">Изменить пароль</string>
+    <string name="is_remember_password">Запомнить пароль?</string>
 
     <string name="app_version">Версия 1.1.1</string>
     <string name="text_feedback">Обратная связь</string>

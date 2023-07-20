@@ -57,10 +57,21 @@ class SignInActivity : AppCompatActivity() {
                 )
             )
             if (success) {
+                isRememberPassword()
                 openActivity(MainAccountActivity::class.java)
             } else {
                 applicationContext.toast("Логин или пароль введены неверно")
             }
+        }
+    }
+
+    private fun isRememberPassword() {
+        if(binding.isRememberPassword.isChecked) {
+            val sharedPreferences = getSharedPreferences("my_shared_prefs", Context.MODE_PRIVATE)
+            sharedPreferences.edit()
+                .putString("email", binding.editTextMail.editText?.text.toString())
+                .putString("password", binding.editTextPassword.editText?.text.toString())
+                .apply()
         }
     }
 

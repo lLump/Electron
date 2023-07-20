@@ -57,6 +57,7 @@ class TasksFragment : Fragment(), DotDialogListener {
         binding.createTask.setOnClickListener {
             showTaskCreatorDialog()
         }
+
     }
 
     private fun initRecycler() {
@@ -129,12 +130,14 @@ class TasksFragment : Fragment(), DotDialogListener {
 
     override fun onTaskDialogAction(action: DotsAction) {
         when (action) {
-            DotsAction.MANAGER -> TODO()
-            DotsAction.PHONE -> TODO()
-            DotsAction.COMMENT -> TODO()
-            DotsAction.LABEL -> TODO()
-            DotsAction.EDIT -> TODO()
+            DotsAction.MANAGER -> nothing() //TODO
+            DotsAction.PHONE -> nothing()
+            DotsAction.COMMENT -> nothing()
+            DotsAction.LABEL -> nothing()
+            DotsAction.EDIT -> nothing()
             DotsAction.DELETE -> (recyclerView.adapter as TaskListAdapter).dataTransfer.deleteChosenTasks()
         }
     }
+
+    private fun nothing() {}
 }
