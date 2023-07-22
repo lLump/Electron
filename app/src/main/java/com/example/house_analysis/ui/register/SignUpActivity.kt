@@ -202,7 +202,7 @@ class SignUpActivity : AppCompatActivity() {
         password2.editText?.doOnTextChanged { text, start, before, count ->
             if (text?.length!! > 7 && text.toString() == password1.editText?.text.toString() && password1.editText?.text.toString().isNotEmpty()) {
                 arePasswordsEqual = true
-                password2.helperText = "Пароли совподают"
+                password2.helperText = resources.getString(R.string.passwords_match)
                 password1.helperText = null
                 password1.startIconDrawable =
                     resources.getDrawable(R.drawable.baseline_check_circle_24)
@@ -212,7 +212,7 @@ class SignUpActivity : AppCompatActivity() {
 
             } else {
                 arePasswordsEqual = false
-                password2.error = "Пароли не совподают"
+                password2.error = resources.getString(R.string.passwords_not_match)
                 password1.startIconDrawable = null
                 password2.startIconDrawable = null
             }
@@ -278,12 +278,12 @@ class SignUpActivity : AppCompatActivity() {
     private fun updateSignUpButtonState() {
         isFieldsValid = areAllFieldsValid()
 
-        binding.buttonSignUp.isEnabled = isFieldsValid
+        binding.buttonSignUp.isEnabled = isFieldsValid // Из-за этого
 
         signUpBtn.setOnClickListener{
-            if (isFieldsValid) {
+            if (isFieldsValid) { //TODO("Бесполезная проверка")
                 registrationRequest()
-            } else applicationContext.toast("Проверьте поля и исправьте ошибки")
+            } else applicationContext.toast(resources.getString(R.string.fields_check))
         }
     }
 
@@ -303,7 +303,7 @@ class SignUpActivity : AppCompatActivity() {
             // Respond to input text change
             if (!inputText.isNullOrEmpty()) {
                 if ("@" !in inputText){
-                    email.error = "Неверный формат почты"
+                    email.error = resources.getString(R.string.incorrect_mail)
                     isMailValid = false
                 }
                 else {

@@ -19,7 +19,7 @@ import com.example.house_analysis.databinding.FragmentTasksBinding
 import com.example.house_analysis.network.api.requests.RequestRepository
 import com.example.house_analysis.network.model.request.TaskRequestModel
 import com.example.house_analysis.taskLogic.ItemClickSupport
-import com.example.house_analysis.taskLogic.TaskListAdapter
+import com.example.house_analysis.taskLogic.tasks.TaskListAdapter
 import com.example.house_analysis.ui.profile.bottom_nav.dialogs.DotsAction
 import com.example.house_analysis.ui.profile.bottom_nav.dialogs.DotDialogListener
 import com.example.house_analysis.ui.profile.bottom_nav.dialogs.TaskDotsDialog
@@ -76,14 +76,14 @@ class TasksFragment : Fragment(), DotDialogListener {
             })
             ?.setOnItemLongClickListener(object: ItemClickSupport.OnItemLongClickListener {
                 override fun onItemLongClicked(recyclerView: RecyclerView?, position: Int, v: View?): Boolean {
-
+                    (recyclerView?.adapter as TaskListAdapter).dataTransfer.getAdditionalInfo(position)
                     return true
                 }
             })
     }
 
     private fun ifNoTasks() {
-        if ((recyclerView.adapter as TaskListAdapter).dataTransfer.tasks.isEmpty()) {
+        if ((recyclerView.adapter as TaskListAdapter).tasks.isEmpty()) { //FIXME
             binding.ifTasksNotExists.visibility = View.VISIBLE
             binding.ifTasksExists.visibility = View.GONE
         }

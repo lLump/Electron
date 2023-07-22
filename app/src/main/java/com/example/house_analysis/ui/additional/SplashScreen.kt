@@ -57,7 +57,7 @@ class SplashScreen : AppCompatActivity() {
     }
 
     private fun isUserRemembered(): Boolean {
-        val sharedPreferences = getSharedPreferences("my_shared_prefs", Context.MODE_PRIVATE)
+        val sharedPreferences = getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
 
         email = sharedPreferences?.getString("email", null)
         password = sharedPreferences?.getString("password", null)

@@ -48,7 +48,7 @@ class SignInActivity : AppCompatActivity() {
         binding.signUpTextView.setOnClickListener(listener)
     }
 
-    private fun loginRequest() {
+    private fun loginRequest() { // TODO("Добавить проверку на пустые поля логина и пароля")
         lifecycleScope.launch {
             val success = networkRepository.login(
                 UserLoginData(
@@ -60,14 +60,14 @@ class SignInActivity : AppCompatActivity() {
                 isRememberPassword()
                 openActivity(MainAccountActivity::class.java)
             } else {
-                applicationContext.toast("Логин или пароль введены неверно")
+                applicationContext.toast(resources.getText(R.string.login_fail))
             }
         }
     }
 
     private fun isRememberPassword() {
         if(binding.isRememberPassword.isChecked) {
-            val sharedPreferences = getSharedPreferences("my_shared_prefs", Context.MODE_PRIVATE)
+            val sharedPreferences = getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
             sharedPreferences.edit()
                 .putString("email", binding.editTextMail.editText?.text.toString())
                 .putString("password", binding.editTextPassword.editText?.text.toString())

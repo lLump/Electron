@@ -3,6 +3,7 @@ package com.example.house_analysis.taskLogic
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.house_analysis.network.model.response.Subtask
+import com.example.house_analysis.taskLogic.tasks.model.view.TaskView
 
 class SubtasksListAdapter(private val tasks: List<Subtask>):
     RecyclerView.Adapter<SubtasksListAdapter.MyViewHolder>() {
