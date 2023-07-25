@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/slide_cardView"
+        android:layout_width="match_parent"
+        android:layout_height="175dp"
+        android:backgroundTint="@color/backgroundLightGray"
+        app:cardCornerRadius="15dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/slide_info_field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/outline_of_layout">
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/slide_flag"
+                    android:layout_width="50dp"
+                    android:layout_height="35dp"
+                    android:background="@color/transparent"
+                    android:src="@drawable/flag_red" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/black" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/slide_apartments"
+                        android:layout_width="50dp"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:layout_toStartOf="@+id/textView1"
+                        android:gravity="center"
+                        android:paddingStart="5dp"
+                        android:text="1 - 3304"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/textView1"
+                        android:layout_width="35dp"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentEnd="true"
+                        android:gravity="center|left"
+                        android:text="@string/abbreviated_apartment" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/black" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_width="50dp"
+                        android:id="@+id/slide_floors"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:layout_toStartOf="@+id/textView2"
+                        android:gravity="center"
+                        android:paddingStart="5dp"
+                        android:text="1 - 122"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="35dp"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentEnd="true"
+                        android:gravity="center|left"
+                        android:text="@string/abbreviated_floor" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/black" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_width="50dp"
+                        android:id="@+id/slide_entrance"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:layout_toStartOf="@+id/textView3"
+                        android:gravity="center"
+                        android:paddingStart="5dp"
+                        android:text="1 - 34"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="35dp"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentEnd="true"
+                        android:gravity="center|left"
+                        android:text="@string/abbreviated_entrance" />
+
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_below="@+id/slide_info_field"
+                android:layout_alignStart="@+id/slide_info_field"
+                android:layout_alignEnd="@+id/slide_info_field"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/slide_fullName"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:drawablePadding="15dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/black"
+                    android:textSize="17sp"
+                    app:drawableStartCompat="@drawable/icon_people"/>
+
+                <TextView
+                    android:id="@+id/slide_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:drawablePadding="15dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/black"
+                    android:textSize="17sp"
+                    app:drawableStartCompat="@drawable/icon_phone"/>
+
+                <TextView
+                    android:id="@+id/slide_comment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:drawablePadding="15dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/black"
+                    android:textSize="17sp"
+                    app:drawableStartCompat="@drawable/icon_comment" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

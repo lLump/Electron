@@ -82,16 +82,16 @@ class TasksFragment : Fragment(), DotDialogListener {
             })
     }
 
-    private fun ifNoTasks() {
-        if ((recyclerView.adapter as TaskListAdapter).tasks.isEmpty()) { //FIXME
-            binding.ifTasksNotExists.visibility = View.VISIBLE
-            binding.ifTasksExists.visibility = View.GONE
-        }
-        else {
-            binding.ifTasksNotExists.visibility = View.GONE
-            binding.ifTasksExists.visibility = View.VISIBLE
-        }
-    }
+//    private fun ifNoTasks() {
+//        if ((recyclerView.adapter as TaskListAdapter).tasks.isEmpty()) { //FIXME
+//            binding.ifTasksNotExists.visibility = View.VISIBLE
+//            binding.ifTasksExists.visibility = View.GONE
+//        }
+//        else {
+//            binding.ifTasksNotExists.visibility = View.GONE
+//            binding.ifTasksExists.visibility = View.VISIBLE
+//        }
+//    }
 
     private fun showTaskCreatorDialog(){
         val dialog = Dialog(requireContext())

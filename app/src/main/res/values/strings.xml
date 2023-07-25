@@ -87,6 +87,7 @@
     <string name="abbreviated_street">ул. </string>
     <string name="abbreviated_floor">эт</string>
     <string name="abbreviated_apartment">кв</string>
+    <string name="abbreviated_entrance">под</string>
 
     <string name="add_house_manager">Добавить главного по дому</string>
     <string name="add_phone">Добавить телефон</string>
