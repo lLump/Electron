@@ -50,7 +50,7 @@ class PostRequestsRepo(private val networkRepository: RequestProvider) {
         }
     }
 
-    suspend fun createTask(taskInfo: TaskRequestModel): Int {
+    suspend fun createTask(taskInfo: TaskRequestModel): Long {
         return suspendCoroutine { continuation ->
             networkRepository.createTask(taskInfo)
                 .observeOn(AndroidSchedulers.mainThread())

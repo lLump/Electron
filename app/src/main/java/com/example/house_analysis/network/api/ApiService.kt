@@ -28,16 +28,16 @@ interface ApiService {
     fun createTask(@Body request: TaskRequestModel): Observable<TasksResponse>
 
     @GET("tasks/{taskId}")
-    fun getTask(@Path("taskId") taskId: Int): Observable<TasksResponse>
+    fun getTask(@Path("taskId") taskId: Long): Observable<TasksResponse>
 
     @DELETE("tasks/{taskId}")
-    fun deleteTask(@Path("taskId") taskId: Int): Completable
+    fun deleteTask(@Path("taskId") taskId: Long): Completable
 
     @PATCH("tasks/{taskId}/subtasks/replace")
-    fun replaceFloorAndLoungeForSubtask(@Path("taskId") taskId: Int, @Body request: LoungeFloorModel): Observable<Response<Unit>>
+    fun replaceFloorAndLoungeForSubtask(@Path("taskId") taskId: Long, @Body request: LoungeFloorModel): Observable<Response<Unit>>
 
     @GET("tasks/{taskId}/subtasks")
-    fun getFullTaskWithSubtasks(@Path("taskId") taskId: Int): Observable<TaskWithSubtasks>
+    fun getFullTaskWithSubtasks(@Path("taskId") taskId: Long): Observable<TaskWithSubtasks>
 
     @GET("tasks/user")
     fun getUserTasks(): Observable<ArrayList<TasksResponse>>

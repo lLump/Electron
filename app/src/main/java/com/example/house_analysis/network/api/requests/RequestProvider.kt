@@ -26,7 +26,7 @@ class RequestProvider(private val apiService: ApiService) {
         return apiService.createTask(taskInfo)
     }
 
-    fun deleteTask(taskId: Int): Completable {
+    fun deleteTask(taskId: Long): Completable {
         return apiService.deleteTask(taskId)
     }
 
@@ -34,15 +34,15 @@ class RequestProvider(private val apiService: ApiService) {
         return apiService.getUserTasks()
     }
 
-    fun getTask(taskId: Int): Observable<TasksResponse> {
+    fun getTask(taskId: Long): Observable<TasksResponse> {
         return apiService.getTask(taskId)
     }
 
-    fun getFullTaskWithSubtasks(taskId: Int): Observable<TaskWithSubtasks> {
+    fun getFullTaskWithSubtasks(taskId: Long): Observable<TaskWithSubtasks> {
         return apiService.getFullTaskWithSubtasks(taskId)
     }
 
-    fun replaceFloorAndLoungeForSubtask(taskIdToChange: Int, floors: Int, lounges: Int, subtaskIds: List<Int>): Observable<Response<Unit>> {
+    fun replaceFloorAndLoungeForSubtask(taskIdToChange: Long, floors: Int, lounges: Int, subtaskIds: List<Long>): Observable<Response<Unit>> {
         return apiService.replaceFloorAndLoungeForSubtask(taskIdToChange, LoungeFloorModel(floors, lounges, subtaskIds))
     }
 

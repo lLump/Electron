@@ -32,7 +32,7 @@ class GetRequestsRepo(private val networkRepository: RequestProvider) {
         }
     }
 
-    suspend fun getTask(taskId: Int): TasksResponse {
+    suspend fun getTask(taskId: Long): TasksResponse {
         return suspendCoroutine { continuation ->
             networkRepository.getTask(taskId)
                 .observeOn(AndroidSchedulers.mainThread())
@@ -49,7 +49,7 @@ class GetRequestsRepo(private val networkRepository: RequestProvider) {
         }
     }
 
-    fun requestGetTaskWithSubtasks(taskId: Int): TaskWithSubtasks {
+    fun requestGetTaskWithSubtasks(taskId: Long): TaskWithSubtasks {
         var response = TaskWithSubtasks(0, "null", 0, emptyList())
         networkRepository.getFullTaskWithSubtasks(taskId)
             .observeOn(AndroidSchedulers.mainThread())

@@ -15,7 +15,7 @@ class TaskListAdapter :
     val dataTransfer = TaskDataTransfer()
 
     private var uiItems = arrayListOf<RecyclerItem>()
-    private var checkedTasksId = arrayListOf<Int>()
+    private var checkedTasksId = arrayListOf<Long>()
 
     init {
         dataTransfer.reloadList()
@@ -61,7 +61,7 @@ class TaskListAdapter :
         return viewHolder!!
     }
 
-    private fun getItemPosById(id: Int) =
+    private fun getItemPosById(id: Long) =
         uiItems.indexOfFirst {
             when (it) {
                 is RecyclerItem.TaskItem -> it.task.taskId == id
@@ -117,7 +117,7 @@ class TaskListAdapter :
 
     inner class TaskDataTransfer {
         private val dataHelper = TaskDataHelper()
-        private var taskIdsWithAdditional = arrayListOf<Int>()
+        private var taskIdsWithAdditional = arrayListOf<Long>()
 
         fun getAdditionalInfo(position: Int) {
             val id = uiItems.getItem(position).taskId
@@ -131,7 +131,7 @@ class TaskListAdapter :
             }
         }
 
-        private fun getAndSetAdditional(id: Int, mainItemPosition: Int) {
+        private fun getAndSetAdditional(id: Long, mainItemPosition: Int) {
             dataHelper.getTask(id) {
                 uiItems.add(mainItemPosition + 1, RecyclerItem.AdditionalItem(it))
                 notifyItemInserted(mainItemPosition + 1)
@@ -146,14 +146,14 @@ class TaskListAdapter :
             checkedTasksId.clear()
         }
 
-        private fun removeTask(id: Int) {
+        private fun removeTask(id: Long) {
             val pos = getItemPosById(id)
             uiItems.removeAt(pos)
             notifyItemRemoved(pos)
             removeAdditionalViewIfExist(id)
         }
 
-        private fun removeAdditionalViewIfExist(id: Int) {
+        private fun removeAdditionalViewIfExist(id: Long) {
             val pos = getItemPosById(id)
             if (pos != -1) {
                 if (uiItems[pos] is RecyclerItem.AdditionalItem) {

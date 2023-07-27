@@ -10,7 +10,7 @@ import io.reactivex.schedulers.Schedulers
 class DeleteRequestsRepo(private val networkRepository: RequestProvider) {
     private val logTag = "Network"
 
-    fun deleteTask(taskId: Int) {
+    fun deleteTask(taskId: Long) {
         networkRepository.deleteTask(taskId)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())

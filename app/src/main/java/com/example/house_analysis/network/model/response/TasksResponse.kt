@@ -9,7 +9,7 @@ data class TasksResponse(
     val priority: String,
 
     //All user tasks response
-    val taskId: Int,
+    val taskId: Long,
     val title: String,
     val floorsFrom: Int,
     val floorsTo: Int,
@@ -33,5 +33,5 @@ data class Performer(
 
 data class Mark(
     val context: String,
-    val id: Int
+    val id: Long
 )

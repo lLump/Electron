@@ -18,7 +18,7 @@ object RequestRepository {
     suspend fun login(userInfo: UserLoginData) = postRepo.login(userInfo)
     suspend fun register(userInfo: UserRegisterData) = postRepo.registration(userInfo)
     suspend fun getTasks() = getRepo.getTasks()
-    suspend fun getTask(taskId: Int) = getRepo.getTask(taskId)
+    suspend fun getTask(taskId: Long) = getRepo.getTask(taskId)
     suspend fun createTask(taskInfo: TaskRequestModel) = postRepo.createTask(taskInfo)
-    fun deleteTask(taskId: Int) { deleteRepo.deleteTask(taskId) }
+    fun deleteTask(taskId: Long) { deleteRepo.deleteTask(taskId) }
 }

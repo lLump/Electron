@@ -1,7 +1,7 @@
 package com.example.house_analysis.network.model.response
 
 data class TaskWithSubtasks(
-    val taskId: Int,
+    val taskId: Long,
     val title: String,
     val totalSubtasks: Int,
     val subtasks: List<Subtask>
@@ -9,7 +9,7 @@ data class TaskWithSubtasks(
 
 data class Subtask(
     val number: Int,
-    val subtaskId: Int,
+    val subtaskId: Long,
     val priority: String?,
     val status: String,
     val floor: Int,

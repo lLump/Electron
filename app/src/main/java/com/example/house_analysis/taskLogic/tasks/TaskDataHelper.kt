@@ -18,7 +18,7 @@ class TaskDataHelper {
         }
     }
 
-    fun getTask(taskId: Int, callback: (TasksResponse) -> Unit) {
+    fun getTask(taskId: Long, callback: (TasksResponse) -> Unit) {
         CoroutineScope(Dispatchers.IO).launch {
             val task = networkRepository.getTask(taskId)
             withContext(Dispatchers.Main) {
@@ -27,7 +27,7 @@ class TaskDataHelper {
         }
     }
 
-    fun deleteTask(id: Int) {
+    fun deleteTask(id: Long) {
         networkRepository.deleteTask(id)
     }
 
