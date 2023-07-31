@@ -1,27 +1,28 @@
-package com.example.house_analysis.taskLogic.tasks
+package com.example.house_analysis.recyclers.tasks
 
 import android.annotation.SuppressLint
 import android.view.ViewGroup
 import android.widget.CompoundButton
 import androidx.recyclerview.widget.RecyclerView
 import com.example.house_analysis.network.model.response.TasksResponse
-import com.example.house_analysis.taskLogic.tasks.model.view.AdditionalView
-import com.example.house_analysis.taskLogic.tasks.model.RecyclerItem
-import com.example.house_analysis.taskLogic.tasks.model.view.TaskView
+import com.example.house_analysis.recyclers.tasks.model.view.SlideView
+import com.example.house_analysis.recyclers.tasks.model.RecyclerItem
+import com.example.house_analysis.recyclers.tasks.model.view.TaskView
 
 class TaskListAdapter :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    val dataTransfer = TaskDataTransfer()
+    val dataTransfer = DataTransfer()
 
     private var uiItems = arrayListOf<RecyclerItem>()
+    private var taskIdsWithSlide = arrayListOf<Long>()
     private var checkedTasksId = arrayListOf<Long>()
 
     init {
         dataTransfer.reloadList()
     }
 
-    class TaskHolder(var taskItemView: TaskView) : RecyclerView.ViewHolder(taskItemView) {
+    private class TaskHolder(var taskItemView: TaskView) : RecyclerView.ViewHolder(taskItemView) {
         @SuppressLint("SetTextI18n")
         fun fillTaskItem(task: TasksResponse) {
             taskItemView.apply {
@@ -33,13 +34,13 @@ class TaskListAdapter :
     }
 
 
-    inner class AdditionalInfoHolder(var additionalItemView: AdditionalView) :
-        RecyclerView.ViewHolder(additionalItemView) {
+    inner class SlideInfoHolder(var slideItemView: SlideView) :
+        RecyclerView.ViewHolder(slideItemView) {
         @SuppressLint("SetTextI18n")
-        fun fillAdditionalView(task: TasksResponse) {
+        fun fillSlideView(task: TasksResponse) {
             val mainItemPos = getItemPosById(task.taskId)
             val mainItem = uiItems.getItem(mainItemPos)
-            additionalItemView.apply {
+            slideItemView.apply {
                 //flag (priority) TODO
                 apartments?.text =
                     "${mainItem.subtasksFrom} - ${mainItem.subtasksTo}"
@@ -56,26 +57,17 @@ class TaskListAdapter :
         var viewHolder: RecyclerView.ViewHolder? = null
         when (viewType) {
             VIEW_ITEM -> viewHolder = TaskHolder(TaskView(parent.context))
-            VIEW_ADDITIONAL -> viewHolder = AdditionalInfoHolder(AdditionalView(parent.context))
+            VIEW_SLIDE -> viewHolder = SlideInfoHolder(SlideView(parent.context))
         }
         return viewHolder!!
     }
-
-    private fun getItemPosById(id: Long) =
-        uiItems.indexOfFirst {
-            when (it) {
-                is RecyclerItem.TaskItem -> it.task.taskId == id
-                is RecyclerItem.AdditionalItem -> it.task.taskId == id
-            }
-        }
-
 
     override fun getItemCount() = uiItems.size
 
     override fun getItemViewType(position: Int) =
         when (uiItems[position]) {
             is RecyclerItem.TaskItem -> VIEW_ITEM
-            is RecyclerItem.AdditionalItem -> VIEW_ADDITIONAL
+            is RecyclerItem.SlideItem -> VIEW_SLIDE
         }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
@@ -88,11 +80,19 @@ class TaskListAdapter :
                 holder.taskItemView.checkBox?.setOnCheckedChangeListener(listener)
                 holder.taskItemView.checkBox1?.setOnCheckedChangeListener(listener)
             }
-            VIEW_ADDITIONAL -> {
-                (holder as AdditionalInfoHolder).fillAdditionalView(uiItems.getItem(position))
+            VIEW_SLIDE -> {
+                (holder as SlideInfoHolder).fillSlideView(uiItems.getItem(position))
             }
         }
     }
+
+    private fun getItemPosById(id: Long) =
+        uiItems.indexOfFirst {
+            when (it) {
+                is RecyclerItem.TaskItem -> it.task.taskId == id
+                is RecyclerItem.SlideItem -> it.task.taskId == id
+            }
+        }
 
     private fun checkListener(taskView: TaskView, position: Int) =
         CompoundButton.OnCheckedChangeListener { _, isChecked ->
@@ -111,30 +111,38 @@ class TaskListAdapter :
     private fun ArrayList<RecyclerItem>.getItem(position: Int): TasksResponse {
         return when (val item = this[position]) {
             is RecyclerItem.TaskItem -> item.task
-            is RecyclerItem.AdditionalItem -> item.task
+            is RecyclerItem.SlideItem -> item.task
         }
     }
 
-    inner class TaskDataTransfer {
-        private val dataHelper = TaskDataHelper()
-        private var taskIdsWithAdditional = arrayListOf<Long>()
+    inner class DataTransfer {
+        private val dataHelper = DataHelper()
 
-        fun getAdditionalInfo(position: Int) {
-            val id = uiItems.getItem(position).taskId
-            if (taskIdsWithAdditional.contains(id)) {   // Remove view if displayed
-                uiItems.removeAt(position + 1)
-                notifyItemRemoved(position + 1)
-                taskIdsWithAdditional.remove(id)
-            } else {                                    // Get and set info
-                taskIdsWithAdditional.add(id)
-                getAndSetAdditional(id, position)
+        @SuppressLint("NotifyDataSetChanged")
+        fun reloadList() {
+            val temp = arrayListOf<RecyclerItem>()
+//            uiItems.clear()
+            dataHelper.getAllTasks { tasks ->
+                tasks.forEach { item ->
+                    temp.add(RecyclerItem.TaskItem(item))
+                    if(taskIdsWithSlide.contains(item.taskId)) {
+                        getAndSetSlideInfo(item.taskId, getItemPosById(item.taskId))
+                    }
+                }
+                uiItems = temp
+                notifyDataSetChanged()
             }
         }
 
-        private fun getAndSetAdditional(id: Long, mainItemPosition: Int) {
-            dataHelper.getTask(id) {
-                uiItems.add(mainItemPosition + 1, RecyclerItem.AdditionalItem(it))
-                notifyItemInserted(mainItemPosition + 1)
+        fun getAdditionalInfo(position: Int) {
+            val id = uiItems.getItem(position).taskId
+            if (taskIdsWithSlide.contains(id)) {        // Remove view if displayed
+                uiItems.removeAt(position + 1)
+                notifyItemRemoved(position + 1)
+                taskIdsWithSlide.remove(id)
+            } else {                                    // Get and set info
+                taskIdsWithSlide.add(id)
+                getAndSetSlideInfo(id, position)
             }
         }
 
@@ -146,41 +154,34 @@ class TaskListAdapter :
             checkedTasksId.clear()
         }
 
+        private fun getAndSetSlideInfo(id: Long, mainItemPosition: Int) {
+            dataHelper.getTask(id) {
+                uiItems.add(mainItemPosition + 1, RecyclerItem.SlideItem(it))
+                notifyItemInserted(mainItemPosition + 1)
+            }
+        }
+
         private fun removeTask(id: Long) {
             val pos = getItemPosById(id)
             uiItems.removeAt(pos)
             notifyItemRemoved(pos)
-            removeAdditionalViewIfExist(id)
+            removeSlideViewIfExist(id)
         }
 
-        private fun removeAdditionalViewIfExist(id: Long) {
+        private fun removeSlideViewIfExist(id: Long) {
             val pos = getItemPosById(id)
             if (pos != -1) {
-                if (uiItems[pos] is RecyclerItem.AdditionalItem) {
+                if (uiItems[pos] is RecyclerItem.SlideItem) {
                     uiItems.removeAt(pos)
                     notifyItemRemoved(pos)
                 }
             }
         }
 
-        @SuppressLint("NotifyDataSetChanged")
-        fun reloadList() {
-            val temp = arrayListOf<RecyclerItem>()
-            dataHelper.getAllTasks { tasks ->
-                tasks.forEach { item ->
-                    temp.add(RecyclerItem.TaskItem(item))
-                    if(taskIdsWithAdditional.contains(item.taskId)) {
-                        getAndSetAdditional(item.taskId, getItemPosById(item.taskId))
-                    }
-                }
-                uiItems = temp
-                notifyDataSetChanged()
-            }
-        }
     }
 
     companion object {
         private const val VIEW_ITEM = 0
-        private const val VIEW_ADDITIONAL = 1
+        private const val VIEW_SLIDE = 1
     }
 }

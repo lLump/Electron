@@ -1,4 +1,4 @@
-package com.example.house_analysis.taskLogic.tasks
+package com.example.house_analysis.recyclers.tasks
 
 import com.example.house_analysis.network.api.requests.RequestRepository
 import com.example.house_analysis.network.model.response.TasksResponse
@@ -7,7 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class TaskDataHelper {
+class DataHelper {
     private val networkRepository = RequestRepository
     fun getAllTasks(callback: (ArrayList<TasksResponse>) -> Unit) {
         CoroutineScope(Dispatchers.IO).launch {

@@ -15,13 +15,13 @@
 
             <CheckBox
                 android:layout_weight="1"
-                android:id="@+id/isRememberPassword"
+                android:id="@+id/sub_check1"
                 android:buttonTint="@color/main_color"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"/>
             <TextView
                 android:layout_weight="1"
-                android:id="@+id/taskAddress"
+                android:id="@+id/subtask_number"
                 android:layout_width="0dp"
                 android:textColor="@color/black"
                 android:layout_marginEnd="8dp"
@@ -30,15 +30,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <ImageView
-                    android:id="@+id/flag"
+                    android:id="@+id/sub_flag"
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:paddingEnd="8dp"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/flag_red" />
+                    android:src="@drawable/flag_empty" />
                 <ImageView
                     android:layout_weight="1"
-                    android:id="@+id/comment"
+                    android:id="@+id/sub_comment"
                     android:paddingEnd="10dp"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
             <TextView
                 android:layout_weight="1"
                 android:gravity="center"
-                android:id="@+id/importance"
+                android:id="@+id/sub_importance"
                 android:layout_width="0dp"
                 android:textColor="@color/black"
                 android:layout_marginEnd="8dp"
@@ -56,7 +56,7 @@
                 android:layout_height="wrap_content"/>
 
             <ImageView
-                android:id="@+id/hash"
+                android:id="@+id/sub_hash"
                 android:layout_weight="1"
                 android:paddingEnd="0dp"
                 android:layout_width="0dp"
@@ -65,7 +65,7 @@
 
             <CheckBox
                 android:layout_weight="1"
-                android:id="@+id/isCheck1"
+                android:id="@+id/sub_check2"
                 android:buttonTint="@color/main_color"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"/>

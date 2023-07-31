@@ -18,8 +18,8 @@ import com.example.house_analysis.R
 import com.example.house_analysis.databinding.FragmentTasksBinding
 import com.example.house_analysis.network.api.requests.RequestRepository
 import com.example.house_analysis.network.model.request.TaskRequestModel
-import com.example.house_analysis.taskLogic.ItemClickSupport
-import com.example.house_analysis.taskLogic.tasks.TaskListAdapter
+import com.example.house_analysis.recyclers.ItemClickSupport
+import com.example.house_analysis.recyclers.tasks.TaskListAdapter
 import com.example.house_analysis.ui.profile.bottom_nav.dialogs.DotsAction
 import com.example.house_analysis.ui.profile.bottom_nav.dialogs.DotDialogListener
 import com.example.house_analysis.ui.profile.bottom_nav.dialogs.TaskDotsDialog
@@ -71,15 +71,25 @@ class TasksFragment : Fragment(), DotDialogListener {
         ItemClickSupport.addTo(recyclerView)
             ?.setOnItemClickListener(object : ItemClickSupport.OnItemClickListener {
                 override fun onItemClicked(recyclerView: RecyclerView?, position: Int, v: View?) {
-
+                    if (isMainView(position)) {
+                        //TODO
+                    }
                 }
             })
             ?.setOnItemLongClickListener(object: ItemClickSupport.OnItemLongClickListener {
                 override fun onItemLongClicked(recyclerView: RecyclerView?, position: Int, v: View?): Boolean {
-                    (recyclerView?.adapter as TaskListAdapter).dataTransfer.getAdditionalInfo(position)
+                    if (isMainView(position)) {
+                        (recyclerView?.adapter as TaskListAdapter).dataTransfer.getAdditionalInfo(position)
+                    }
                     return true
                 }
             })
+
+    }
+
+    private fun isMainView(pos: Int): Boolean { //Check for type of recyclerItem
+        val viewType = recyclerView.adapter?.getItemViewType(pos)
+        return viewType == 0
     }
 
 //    private fun ifNoTasks() {

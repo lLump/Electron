@@ -16,7 +16,7 @@
             android:layout_height="match_parent">
 
             <CheckBox
-                android:id="@+id/isRememberPassword"
+                android:id="@+id/sub_check1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
@@ -28,11 +28,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:layout_toEndOf="@+id/isRememberPassword"
+                android:layout_toEndOf="@+id/sub_check1"
                 android:text="@string/abbreviated_street" />
 
             <TextView
-                android:id="@+id/taskAddress"
+                android:id="@+id/subtask_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"

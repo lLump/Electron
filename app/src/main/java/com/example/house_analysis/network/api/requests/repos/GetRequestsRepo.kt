@@ -49,19 +49,20 @@ class GetRequestsRepo(private val networkRepository: RequestProvider) {
         }
     }
 
-    fun requestGetTaskWithSubtasks(taskId: Long): TaskWithSubtasks {
-        var response = TaskWithSubtasks(0, "null", 0, emptyList())
-        networkRepository.getFullTaskWithSubtasks(taskId)
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeOn(Schedulers.io())
-            .subscribe(
-                { result ->
-                    Log.d(logTag, result.toString())
-                    response = result
-                }, { error ->
-                    Exception(error).printStackTrace()
-                }
-            )
-        return response
+    suspend fun getTaskWithSubtasks(taskId: Long): TaskWithSubtasks {
+        return suspendCoroutine { continuation ->
+            networkRepository.getTaskWithSubtasks(taskId)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(
+                    { result ->
+                        Log.d(logTag, result.toString())
+                        continuation.resume(result)
+                    }, { error ->
+                        Exception(error).printStackTrace()
+                        continuation.resumeWithException(error)
+                    }
+                )
+        }
     }
 }

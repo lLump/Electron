@@ -1,4 +1,4 @@
-package com.example.house_analysis.taskLogic.tasks.model.view
+package com.example.house_analysis.recyclers.tasks.model.view
 
 import android.content.Context
 import android.widget.CheckBox
@@ -16,9 +16,9 @@ class TaskView(context: Context): LinearLayout(context) {
     init {
         inflate(context, R.layout.list_task_item, this)
 
-        checkBox = findViewById(R.id.isRememberPassword)
+        checkBox = findViewById(R.id.sub_check1)
         checkBox1 = findViewById(R.id.isChecked1)
-        address = findViewById(R.id.taskAddress)
+        address = findViewById(R.id.subtask_number)
         apartmentLis = findViewById(R.id.apartmentList)
         floorList = findViewById(R.id.floorList)
     }

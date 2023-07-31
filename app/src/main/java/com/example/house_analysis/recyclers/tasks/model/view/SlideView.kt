@@ -1,4 +1,4 @@
-package com.example.house_analysis.taskLogic.tasks.model.view
+package com.example.house_analysis.recyclers.tasks.model.view
 
 import android.content.Context
 import android.widget.LinearLayout
@@ -6,7 +6,7 @@ import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageButton
 import com.example.house_analysis.R
 
-class AdditionalView(context: Context): LinearLayout(context) {
+class SlideView(context: Context): LinearLayout(context) {
     var flag: AppCompatImageButton? = null
     var apartments: TextView? = null
     var floors: TextView? = null

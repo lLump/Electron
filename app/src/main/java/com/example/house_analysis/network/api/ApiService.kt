@@ -37,7 +37,7 @@ interface ApiService {
     fun replaceFloorAndLoungeForSubtask(@Path("taskId") taskId: Long, @Body request: LoungeFloorModel): Observable<Response<Unit>>
 
     @GET("tasks/{taskId}/subtasks")
-    fun getFullTaskWithSubtasks(@Path("taskId") taskId: Long): Observable<TaskWithSubtasks>
+    fun getTaskWithSubtasks(@Path("taskId") taskId: Long): Observable<TaskWithSubtasks>
 
     @GET("tasks/user")
     fun getUserTasks(): Observable<ArrayList<TasksResponse>>

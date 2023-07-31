@@ -38,8 +38,8 @@ class RequestProvider(private val apiService: ApiService) {
         return apiService.getTask(taskId)
     }
 
-    fun getFullTaskWithSubtasks(taskId: Long): Observable<TaskWithSubtasks> {
-        return apiService.getFullTaskWithSubtasks(taskId)
+    fun getTaskWithSubtasks(taskId: Long): Observable<TaskWithSubtasks> {
+        return apiService.getTaskWithSubtasks(taskId)
     }
 
     fun replaceFloorAndLoungeForSubtask(taskIdToChange: Long, floors: Int, lounges: Int, subtaskIds: List<Long>): Observable<Response<Unit>> {

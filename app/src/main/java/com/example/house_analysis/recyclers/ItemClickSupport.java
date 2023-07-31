@@ -1,4 +1,4 @@
-package com.example.house_analysis.taskLogic;
+package com.example.house_analysis.recyclers;
 
 import android.view.View;
 

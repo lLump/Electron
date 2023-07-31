@@ -2,23 +2,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/home"
         android:enabled="true"
-        android:icon="@drawable/home_main"
+        android:icon="@drawable/icon_home"
         android:title="@string/text_main"/>
 
     <item android:id="@+id/search"
         android:enabled="true"
         android:titleCondensed="true"
-        android:icon="@drawable/search_main"
+        android:icon="@drawable/icon_search"
         android:title="@string/text_search"/>
 
     <item android:id="@+id/add"
         android:enabled="true"
-        android:icon="@drawable/add_main"
+        android:icon="@drawable/icon_plus"
         android:title="@string/text_add"/>
 
     <item android:id="@+id/dots"
         android:enabled="true"
-        android:icon="@drawable/dots_main"
+        android:icon="@drawable/icon_dots"
         android:title="@string/text_highlight"/>
 
 </menu>
