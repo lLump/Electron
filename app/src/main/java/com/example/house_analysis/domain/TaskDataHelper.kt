@@ -1,13 +1,13 @@
-package com.example.house_analysis.recyclers.tasks
+package com.example.house_analysis.domain
 
-import com.example.house_analysis.network.api.requests.RequestRepository
-import com.example.house_analysis.network.model.response.TasksResponse
+import com.example.house_analysis.data.api.requests.RequestRepository
+import com.example.house_analysis.data.model.response.TasksResponse
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class DataHelper {
+class TaskDataHelper {
     private val networkRepository = RequestRepository
     fun getAllTasks(callback: (ArrayList<TasksResponse>) -> Unit) {
         CoroutineScope(Dispatchers.IO).launch {

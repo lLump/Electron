@@ -6,11 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
-import androidx.lifecycle.lifecycleScope
 import com.example.house_analysis.MainActivity
 import com.example.house_analysis.R
-import com.example.house_analysis.network.api.requests.RequestRepository
-import com.example.house_analysis.network.model.request.UserLoginData
+import com.example.house_analysis.data.api.requests.RequestRepository
+import com.example.house_analysis.data.model.request.UserLoginModel
 import com.example.house_analysis.ui.profile.MainAccountActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -42,7 +41,7 @@ class SplashScreen : AppCompatActivity() {
     private fun loginRequest() {
         CoroutineScope(Dispatchers.IO).launch {
             val success = networkRepository.login(
-                UserLoginData(
+                UserLoginModel(
                     email!!,
                     password!!
                 )

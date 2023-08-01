@@ -1,7 +1,7 @@
-package com.example.house_analysis.network.api.requests.repos
+package com.example.house_analysis.data.api.requests.repos
 
 import android.util.Log
-import com.example.house_analysis.network.api.requests.RequestProvider
+import com.example.house_analysis.data.api.requests.RequestProvider
 import io.reactivex.CompletableObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable

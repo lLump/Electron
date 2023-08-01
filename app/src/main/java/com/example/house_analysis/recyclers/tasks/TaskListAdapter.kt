@@ -4,7 +4,8 @@ import android.annotation.SuppressLint
 import android.view.ViewGroup
 import android.widget.CompoundButton
 import androidx.recyclerview.widget.RecyclerView
-import com.example.house_analysis.network.model.response.TasksResponse
+import com.example.house_analysis.data.model.response.TasksResponse
+import com.example.house_analysis.domain.TaskDataHelper
 import com.example.house_analysis.recyclers.tasks.model.view.SlideView
 import com.example.house_analysis.recyclers.tasks.model.RecyclerItem
 import com.example.house_analysis.recyclers.tasks.model.view.TaskView
@@ -12,7 +13,7 @@ import com.example.house_analysis.recyclers.tasks.model.view.TaskView
 class TaskListAdapter :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    val dataTransfer = DataTransfer()
+    private val dataTransfer = DataTransfer()
 
     private var uiItems = arrayListOf<RecyclerItem>()
     private var taskIdsWithSlide = arrayListOf<Long>()
@@ -33,8 +34,7 @@ class TaskListAdapter :
         }
     }
 
-
-    inner class SlideInfoHolder(var slideItemView: SlideView) :
+    private inner class SlideInfoHolder(var slideItemView: SlideView) :
         RecyclerView.ViewHolder(slideItemView) {
         @SuppressLint("SetTextI18n")
         fun fillSlideView(task: TasksResponse) {
@@ -115,11 +115,16 @@ class TaskListAdapter :
         }
     }
 
-    inner class DataTransfer {
-        private val dataHelper = DataHelper()
+    fun getItemIdByPos(pos: Int) = uiItems.getItem(pos).taskId
+
+    fun getInterface() = dataTransfer.myInterface
+
+    private inner class DataTransfer: DataTransferInterface {
+        var myInterface: DataTransferInterface = this
+        private val dataHelper = TaskDataHelper()
 
         @SuppressLint("NotifyDataSetChanged")
-        fun reloadList() {
+        override fun reloadList() {
             val temp = arrayListOf<RecyclerItem>()
 //            uiItems.clear()
             dataHelper.getAllTasks { tasks ->
@@ -134,7 +139,7 @@ class TaskListAdapter :
             }
         }
 
-        fun getAdditionalInfo(position: Int) {
+        override fun loadSlideInfo(position: Int) {
             val id = uiItems.getItem(position).taskId
             if (taskIdsWithSlide.contains(id)) {        // Remove view if displayed
                 uiItems.removeAt(position + 1)
@@ -146,7 +151,7 @@ class TaskListAdapter :
             }
         }
 
-        fun deleteChosenTasks() {
+        override fun deleteTasks() {
             checkedTasksId.forEach {
                 dataHelper.deleteTask(it)
                 removeTask(it)

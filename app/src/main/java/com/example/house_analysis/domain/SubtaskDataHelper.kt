@@ -1,14 +1,15 @@
-package com.example.house_analysis.recyclers.subtasks
+package com.example.house_analysis.domain
 
-import com.example.house_analysis.network.api.requests.RequestRepository
-import com.example.house_analysis.network.model.response.TaskWithSubtasks
+import com.example.house_analysis.data.api.requests.RequestRepository
+import com.example.house_analysis.data.model.response.TaskWithSubtasks
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class InfoHelper {
+class SubtaskDataHelper {
     private val networkRepository = RequestRepository
+
     fun getTaskWithSubtasks(taskId: Long, callback: (TaskWithSubtasks) -> Unit) {
         CoroutineScope(Dispatchers.IO).launch {
             val task = networkRepository.getTaskWithSubtasks(taskId)
@@ -17,5 +18,4 @@ class InfoHelper {
             }
         }
     }
-
 }

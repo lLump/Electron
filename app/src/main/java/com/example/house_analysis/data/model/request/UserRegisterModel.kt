@@ -1,6 +1,6 @@
-package com.example.house_analysis.network.model.request
+package com.example.house_analysis.data.model.request
 
-data class UserRegisterData(
+data class UserRegisterModel(
     val fullname: String,
     val email: String,
     val password: String,

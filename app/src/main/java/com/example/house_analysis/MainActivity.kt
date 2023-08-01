@@ -20,14 +20,14 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    fun forSignIn(){
+    private fun forSignIn(){
         binding.buttonSignIn.setOnClickListener {
             val intent = Intent(this, SignInActivity::class.java)
             startActivity(intent)
         }
     }
 
-    fun forSignUp(){
+    private fun forSignUp(){
         binding.buttonSignUp.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)

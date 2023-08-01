@@ -1,24 +1,24 @@
-package com.example.house_analysis.network.api.requests
+package com.example.house_analysis.data.api.requests
 
-import com.example.house_analysis.network.api.ApiService
-import com.example.house_analysis.network.model.request.LoungeFloorModel
-import com.example.house_analysis.network.model.request.TaskRequestModel
-import com.example.house_analysis.network.model.request.UserLoginData
-import com.example.house_analysis.network.model.request.UserRegisterData
-import com.example.house_analysis.network.model.response.TaskWithSubtasks
-import com.example.house_analysis.network.model.response.TasksResponse
-import com.example.house_analysis.network.model.response.TokenResponse
+import com.example.house_analysis.data.api.ApiService
+import com.example.house_analysis.data.model.request.LoungeFloorModel
+import com.example.house_analysis.data.model.request.TaskRequestModel
+import com.example.house_analysis.data.model.request.UserLoginModel
+import com.example.house_analysis.data.model.request.UserRegisterModel
+import com.example.house_analysis.data.model.response.TaskWithSubtasks
+import com.example.house_analysis.data.model.response.TasksResponse
+import com.example.house_analysis.data.model.response.TokenResponse
 import io.reactivex.Completable
 import io.reactivex.Observable
 import retrofit2.Response
 
 class RequestProvider(private val apiService: ApiService) {
 
-    fun loginUser(userInfo: UserLoginData): Observable<TokenResponse> {
+    fun loginUser(userInfo: UserLoginModel): Observable<TokenResponse> {
         return apiService.loginUser(userInfo)
     }
 
-    fun registerUser(userInfo: UserRegisterData): Observable<Response<Unit>> {
+    fun registerUser(userInfo: UserRegisterModel): Observable<Response<Unit>> {
         return apiService.registerUser(userInfo)
     }
 

@@ -11,8 +11,8 @@ import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.lifecycleScope
 import com.example.house_analysis.R
 import com.example.house_analysis.databinding.ActivitySignUpBinding
-import com.example.house_analysis.network.api.requests.RequestRepository
-import com.example.house_analysis.network.model.request.UserRegisterData
+import com.example.house_analysis.data.api.requests.RequestRepository
+import com.example.house_analysis.data.model.request.UserRegisterModel
 import com.example.house_analysis.ui.additional.SuccessfullyRegisteredActivity
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.coroutines.launch
@@ -78,7 +78,7 @@ class SignUpActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             val responseCode = networkRepository.register(
-                UserRegisterData(
+                UserRegisterModel(
                     fullName,
                     email,
                     password,

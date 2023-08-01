@@ -16,8 +16,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.house_analysis.R
 import com.example.house_analysis.databinding.FragmentTasksBinding
-import com.example.house_analysis.network.api.requests.RequestRepository
-import com.example.house_analysis.network.model.request.TaskRequestModel
+import com.example.house_analysis.data.api.requests.RequestRepository
+import com.example.house_analysis.data.model.request.TaskRequestModel
 import com.example.house_analysis.recyclers.ItemClickSupport
 import com.example.house_analysis.recyclers.tasks.TaskListAdapter
 import com.example.house_analysis.ui.profile.bottom_nav.dialogs.DotsAction
@@ -28,13 +28,14 @@ import kotlinx.coroutines.launch
 
 class TasksFragment : Fragment(), DotDialogListener {
     private lateinit var binding : FragmentTasksBinding
-    private lateinit var recyclerView: RecyclerView
+    private lateinit var recycler: RecyclerView
+    private var requestHelper =  RequestHelper()
     inner class RequestHelper {
         private val networkRepository = RequestRepository
         fun createTask(address: String, from: Int, to: Int) {
             lifecycleScope.launch {
                 networkRepository.createTask(TaskRequestModel(address, from, to))
-                (recyclerView.adapter as TaskListAdapter).dataTransfer.reloadList()
+                (recycler.adapter as TaskListAdapter).getInterface().reloadList()
             }
         }
     }
@@ -61,34 +62,37 @@ class TasksFragment : Fragment(), DotDialogListener {
     }
 
     private fun initRecycler() {
-        recyclerView = binding.rvTasks
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = TaskListAdapter()
+        recycler = binding.rvTasks
+        recycler.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = TaskListAdapter()
+        }
         setItemRecyclerListeners()
     }
 
     private fun setItemRecyclerListeners() {
-        ItemClickSupport.addTo(recyclerView)
+        ItemClickSupport.addTo(recycler)
             ?.setOnItemClickListener(object : ItemClickSupport.OnItemClickListener {
-                override fun onItemClicked(recyclerView: RecyclerView?, position: Int, v: View?) {
-                    if (isMainView(position)) {
-                        //TODO
+                override fun onItemClicked(recyclerView: RecyclerView?, position: Int, view: View) {
+                    if (isMainViewAt(position)) {
+                        val taskId = (recyclerView?.adapter as TaskListAdapter).getItemIdByPos(position)
+                        openSubtasksFragment(taskId)
                     }
                 }
             })
             ?.setOnItemLongClickListener(object: ItemClickSupport.OnItemLongClickListener {
-                override fun onItemLongClicked(recyclerView: RecyclerView?, position: Int, v: View?): Boolean {
-                    if (isMainView(position)) {
-                        (recyclerView?.adapter as TaskListAdapter).dataTransfer.getAdditionalInfo(position)
-                    }
-                    return true
+                override fun onItemLongClicked(recyclerView: RecyclerView?, position: Int, view: View?): Boolean {
+                    return if (isMainViewAt(position)) {
+                        (recyclerView?.adapter as TaskListAdapter).getInterface().loadSlideInfo(position)
+                        true
+                    } else false
                 }
             })
 
     }
 
-    private fun isMainView(pos: Int): Boolean { //Check for type of recyclerItem
-        val viewType = recyclerView.adapter?.getItemViewType(pos)
+    private fun isMainViewAt(pos: Int): Boolean { //Check for type of recyclerItem
+        val viewType = recycler.adapter?.getItemViewType(pos)
         return viewType == 0
     }
 
@@ -122,7 +126,7 @@ class TasksFragment : Fragment(), DotDialogListener {
             val from = dialog.findViewById<TextInputEditText>(R.id.text_from).text.toString().toInt()
             val to = dialog.findViewById<TextInputEditText>(R.id.text_to).text.toString().toInt()
 
-            RequestHelper().createTask(address, from, to)
+            requestHelper.createTask(address, from, to)
 
             dialog.dismiss()
         }
@@ -138,6 +142,14 @@ class TasksFragment : Fragment(), DotDialogListener {
         dialog.show(parentFragmentManager, "Tasks")
     }
 
+    private fun openSubtasksFragment(taskId: Long) {
+        val fragment = SubtasksFragment.newInstance(taskId)
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.fragmentContainer, fragment)
+            .addToBackStack(null)
+            .commit()
+    }
+
     override fun onTaskDialogAction(action: DotsAction) {
         when (action) {
             DotsAction.MANAGER -> nothing() //TODO
@@ -145,7 +157,7 @@ class TasksFragment : Fragment(), DotDialogListener {
             DotsAction.COMMENT -> nothing()
             DotsAction.LABEL -> nothing()
             DotsAction.EDIT -> nothing()
-            DotsAction.DELETE -> (recyclerView.adapter as TaskListAdapter).dataTransfer.deleteChosenTasks()
+            DotsAction.DELETE -> (recycler.adapter as TaskListAdapter).getInterface().deleteTasks()
         }
     }
 

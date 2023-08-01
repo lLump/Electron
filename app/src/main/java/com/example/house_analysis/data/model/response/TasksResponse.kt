@@ -1,4 +1,4 @@
-package com.example.house_analysis.network.model.response
+package com.example.house_analysis.data.model.response
 
 data class TasksResponse(
     //Additional info when 1 task requested

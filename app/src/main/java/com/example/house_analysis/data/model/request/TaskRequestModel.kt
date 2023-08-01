@@ -1,4 +1,4 @@
-package com.example.house_analysis.network.model.request
+package com.example.house_analysis.data.model.request
 
 data class TaskRequestModel(
     val title: String,

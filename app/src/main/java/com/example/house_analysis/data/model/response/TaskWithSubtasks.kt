@@ -1,4 +1,4 @@
-package com.example.house_analysis.network.model.response
+package com.example.house_analysis.data.model.response
 
 data class TaskWithSubtasks(
     val taskId: Long,

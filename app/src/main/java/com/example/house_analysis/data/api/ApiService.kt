@@ -1,12 +1,12 @@
-package com.example.house_analysis.network.api
+package com.example.house_analysis.data.api
 
-import com.example.house_analysis.network.model.request.LoungeFloorModel
-import com.example.house_analysis.network.model.request.TaskRequestModel
-import com.example.house_analysis.network.model.request.UserLoginData
-import com.example.house_analysis.network.model.request.UserRegisterData
-import com.example.house_analysis.network.model.response.TaskWithSubtasks
-import com.example.house_analysis.network.model.response.TasksResponse
-import com.example.house_analysis.network.model.response.TokenResponse
+import com.example.house_analysis.data.model.request.LoungeFloorModel
+import com.example.house_analysis.data.model.request.TaskRequestModel
+import com.example.house_analysis.data.model.request.UserLoginModel
+import com.example.house_analysis.data.model.request.UserRegisterModel
+import com.example.house_analysis.data.model.response.TaskWithSubtasks
+import com.example.house_analysis.data.model.response.TasksResponse
+import com.example.house_analysis.data.model.response.TokenResponse
 import io.reactivex.Completable
 import io.reactivex.Observable
 import okhttp3.OkHttpClient
@@ -44,9 +44,9 @@ interface ApiService {
     // task-controller
 
     @POST("auth")
-    fun loginUser(@Body userData: UserLoginData): Observable<TokenResponse>
+    fun loginUser(@Body userData: UserLoginModel): Observable<TokenResponse>
     @POST("auth/register")
-    fun registerUser(@Body userData: UserRegisterData): Observable<Response<Unit>>
+    fun registerUser(@Body userData: UserRegisterModel): Observable<Response<Unit>>
 
     companion object Factory {
         var token = ""
