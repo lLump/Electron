@@ -1,6 +1,6 @@
 package com.example.house_analysis.domain
 
-import com.example.house_analysis.data.api.requests.RequestRepository
+import com.example.house_analysis.data.repository.RequestRepository
 import com.example.house_analysis.data.model.response.TasksResponse
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

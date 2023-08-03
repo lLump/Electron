@@ -11,7 +11,7 @@ import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.lifecycleScope
 import com.example.house_analysis.R
 import com.example.house_analysis.databinding.ActivitySignUpBinding
-import com.example.house_analysis.data.api.requests.RequestRepository
+import com.example.house_analysis.data.repository.RequestRepository
 import com.example.house_analysis.data.model.request.UserRegisterModel
 import com.example.house_analysis.ui.additional.SuccessfullyRegisteredActivity
 import com.google.android.material.textfield.TextInputLayout

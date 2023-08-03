@@ -8,7 +8,7 @@ import android.os.Handler
 import android.util.Log
 import com.example.house_analysis.MainActivity
 import com.example.house_analysis.R
-import com.example.house_analysis.data.api.requests.RequestRepository
+import com.example.house_analysis.data.repository.RequestRepository
 import com.example.house_analysis.data.model.request.UserLoginModel
 import com.example.house_analysis.ui.profile.MainAccountActivity
 import kotlinx.coroutines.CoroutineScope

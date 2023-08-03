@@ -1,9 +1,8 @@
-package com.example.house_analysis.data.api.requests.repos
+package com.example.house_analysis.data.repository
 
 import android.util.Log
-import com.example.house_analysis.data.api.ApiService
-import com.example.house_analysis.data.api.requests.RequestProvider
-import com.example.house_analysis.data.model.request.TaskRequestModel
+import com.example.house_analysis.data.api.ApiFactory
+import com.example.house_analysis.data.api.service.AuthApi
 import com.example.house_analysis.data.model.request.UserLoginModel
 import com.example.house_analysis.data.model.request.UserRegisterModel
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -12,21 +11,21 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
-class PostRequestsRepo(private val networkRepository: RequestProvider) {
+class AuthRequestRepository(private val service: AuthApi) {
     private val logTag = "Network"
 
     suspend fun login(userInfo: UserLoginModel): Boolean {
         return suspendCoroutine { continuation ->
-            networkRepository.loginUser(userInfo)
+            service.loginUser(userInfo)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(
                     { result ->
-                        ApiService.token = result.token
+                        ApiFactory.token = result.token
                         Log.d(logTag, result.toString())
                         continuation.resume(true)
                     }, { error ->
-                        Log.d(logTag, error.stackTraceToString())
+                        Log.e(logTag, error.stackTraceToString())
                         continuation.resumeWithException(error)
                     }
                 )
@@ -35,7 +34,7 @@ class PostRequestsRepo(private val networkRepository: RequestProvider) {
 
     suspend fun registration(userInfo: UserRegisterModel): Int {
         return suspendCoroutine { continuation ->
-            networkRepository.registerUser(userInfo)
+            service.registerUser(userInfo)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(
@@ -43,27 +42,11 @@ class PostRequestsRepo(private val networkRepository: RequestProvider) {
                         Log.d(logTag, result.toString())
                         continuation.resume(result.code())
                     }, { error ->
-                        Log.d(logTag, error.stackTraceToString())
+                        Log.e(logTag, error.stackTraceToString())
                         continuation.resumeWithException(error)
                     }
                 )
         }
     }
 
-    suspend fun createTask(taskInfo: TaskRequestModel): Long {
-        return suspendCoroutine { continuation ->
-            networkRepository.createTask(taskInfo)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(
-                    { result ->
-                        Log.d(logTag, result.toString())
-                        continuation.resume(result.taskId)
-                    }, { error ->
-                        Log.d(logTag, error.stackTraceToString())
-                        continuation.resumeWithException(error)
-                    }
-                )
-        }
-    }
 }

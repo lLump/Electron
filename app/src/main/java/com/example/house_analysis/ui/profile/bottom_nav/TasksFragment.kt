@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.house_analysis.R
 import com.example.house_analysis.databinding.FragmentTasksBinding
-import com.example.house_analysis.data.api.requests.RequestRepository
+import com.example.house_analysis.data.repository.RequestRepository
 import com.example.house_analysis.data.model.request.TaskRequestModel
 import com.example.house_analysis.recyclers.ItemClickSupport
 import com.example.house_analysis.recyclers.tasks.TaskListAdapter
