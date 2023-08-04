@@ -6,13 +6,14 @@ import com.example.house_analysis.data.model.request.LoungeFloorModel
 import com.example.house_analysis.data.model.request.TaskRequestModel
 import com.example.house_analysis.data.model.response.TaskWithSubtasks
 import com.example.house_analysis.data.model.response.TasksResponse
+import com.example.house_analysis.domain.repository.TaskRepository
 import io.reactivex.Completable
 import io.reactivex.Observable
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Response
 
-class TaskRequestRepository(private val service: TaskApi) {
+class TaskRepositoryImpl(private val service: TaskApi): TaskRepository {
     private val logTag = "Network"
 
     suspend fun createTask(taskInfo: TaskRequestModel): TasksResponse {

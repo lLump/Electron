@@ -10,8 +10,8 @@ import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.lifecycleScope
 import com.example.house_analysis.R
 import com.example.house_analysis.databinding.ActivitySignInBinding
-import com.example.house_analysis.data.repository.RequestRepository
 import com.example.house_analysis.data.model.request.UserLoginModel
+import com.example.house_analysis.domain.usecase.auth.LoginUseCase
 import com.example.house_analysis.ui.password.RestorePass
 import com.example.house_analysis.ui.profile.MainAccountActivity
 import com.google.android.material.textfield.TextInputLayout
@@ -19,8 +19,6 @@ import kotlinx.coroutines.launch
 
 class SignInActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignInBinding
-
-    private val networkRepository = RequestRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,7 +48,7 @@ class SignInActivity : AppCompatActivity() {
 
     private fun loginRequest() { // TODO("Добавить проверку на пустые поля логина и пароля")
         lifecycleScope.launch {
-            val success = networkRepository.login(
+            val success = LoginUseCase().invoke(
                 UserLoginModel(
                     binding.editTextMail.editText?.text.toString(),
                     binding.editTextPassword.editText?.text.toString()
@@ -66,7 +64,7 @@ class SignInActivity : AppCompatActivity() {
     }
 
     private fun isRememberPassword() {
-        if(binding.isRememberPassword.isChecked) {
+        if (binding.isRememberPassword.isChecked) {
             val sharedPreferences = getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
             sharedPreferences.edit()
                 .putString("email", binding.editTextMail.editText?.text.toString())

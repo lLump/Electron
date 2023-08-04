@@ -1,16 +1,18 @@
 package com.example.house_analysis.data.provider
 
 import com.example.house_analysis.data.api.ApiFactory
-import com.example.house_analysis.data.repository.AuthRequestRepository
-import com.example.house_analysis.data.repository.TaskRequestRepository
+import com.example.house_analysis.data.repository.AuthRepositoryImpl
+import com.example.house_analysis.data.repository.TaskRepositoryImpl
+import com.example.house_analysis.domain.repository.AuthRepository
 
 object RepositoryProvider {
-    fun provideTaskProvider(): TaskRequestRepository {
-        return TaskRequestRepository(ApiFactory.createTaskApi())
+
+    fun provideTaskProvider(): TaskRepositoryImpl {
+        return TaskRepositoryImpl(ApiFactory.createTaskApi())
     }
 
-    fun provideAuthRepository(): AuthRequestRepository {
-        return AuthRequestRepository(ApiFactory.createAuthApi())
+    fun provideAuthRepository(): AuthRepository {
+        return AuthRepositoryImpl(ApiFactory.createAuthApi())
     }
 
 }

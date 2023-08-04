@@ -12,7 +12,7 @@ object RequestRepository {
 //    private val postRepo = PostRequestsRepo(taskRepo)
 //    private val deleteRepo = DeleteRequestsRepo(taskRepo)
 
-    suspend fun login(userInfo: UserLoginModel) = authRepo.login(userInfo)
+//    suspend fun login(userInfo: UserLoginModel) = authRepo.login(userInfo)
     suspend fun register(userInfo: UserRegisterModel) = authRepo.registration(userInfo)
     suspend fun getTasks() = taskRepo.getTasks()
     suspend fun getTask(taskId: Long) = taskRepo.getTask(taskId)

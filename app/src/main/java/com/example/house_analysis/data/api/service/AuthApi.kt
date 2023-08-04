@@ -10,7 +10,7 @@ import retrofit2.http.POST
 
 interface AuthApi {
     @POST("auth")
-    fun loginUser(@Body userData: UserLoginModel): Observable<TokenResponse>
+    fun loginUser(@Body userData: UserLoginModel): TokenResponse
 
     @POST("auth/register")
     fun registerUser(@Body userData: UserRegisterModel): Observable<Response<Unit>>

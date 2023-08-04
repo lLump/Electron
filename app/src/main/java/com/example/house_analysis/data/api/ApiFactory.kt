@@ -28,11 +28,15 @@ object ApiFactory {
         .baseUrl("https://api.electronos.ru/api/v1/")
         .build()
 
-    fun createTaskApi() : TaskApi {
-        return retrofit.create(TaskApi::class.java)
+    fun createTaskApi(): TaskApi {
+        return createService(TaskApi::class.java)
     }
 
-    fun createAuthApi() : AuthApi {
-        return retrofit.create(AuthApi::class.java)
+    fun createAuthApi(): AuthApi {
+        return createService(AuthApi::class.java)
+    }
+
+    private fun <T> createService(serviceClass: Class<T>): T {
+        return retrofit.create(serviceClass)
     }
 }
