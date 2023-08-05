@@ -4,10 +4,10 @@ import android.util.Log
 import com.example.house_analysis.data.api.service.TaskApi
 import com.example.house_analysis.data.model.request.LoungeFloorModel
 import com.example.house_analysis.data.model.request.TaskRequestModel
+import com.example.house_analysis.data.model.response.Task
 import com.example.house_analysis.data.model.response.TaskWithSubtasks
-import com.example.house_analysis.data.model.response.TasksResponse
+import com.example.house_analysis.data.model.response.full_task.FullTaskResponse
 import com.example.house_analysis.domain.repository.TaskRepository
-import io.reactivex.Completable
 import io.reactivex.Observable
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -16,7 +16,7 @@ import retrofit2.Response
 class TaskRepositoryImpl(private val service: TaskApi): TaskRepository {
     private val logTag = "Network"
 
-    suspend fun createTask(taskInfo: TaskRequestModel): TasksResponse {
+    override suspend fun createTask(taskInfo: TaskRequestModel): FullTaskResponse {
         return withContext(Dispatchers.IO) {
             try {
                 service.createTask(taskInfo)
@@ -27,11 +27,18 @@ class TaskRepositoryImpl(private val service: TaskApi): TaskRepository {
         }
     }
 
-    fun deleteTask(taskId: Long): Completable {
-        return service.deleteTask(taskId)
+    override suspend fun deleteTask(taskId: Long) {
+        withContext(Dispatchers.IO) {
+            try {
+                service.deleteTask(taskId)
+            } catch (error: Exception) {
+                Log.e(logTag, error.stackTraceToString())
+                throw error
+            }
+        }
     }
 
-    suspend fun getTask(taskId: Long): TasksResponse {
+    override suspend fun getTask(taskId: Long): FullTaskResponse {
         return withContext(Dispatchers.IO) {
             try {
                 service.getTask(taskId)
@@ -42,7 +49,7 @@ class TaskRepositoryImpl(private val service: TaskApi): TaskRepository {
         }
     }
 
-    suspend fun getTasks(): ArrayList<TasksResponse> {
+    override suspend fun getTasks(): ArrayList<Task> {
         return withContext(Dispatchers.IO) {
             try {
                 service.getTasks()
@@ -53,7 +60,7 @@ class TaskRepositoryImpl(private val service: TaskApi): TaskRepository {
         }
     }
 
-    suspend fun getTaskWithSubtasks(taskId: Long): TaskWithSubtasks {
+    override suspend fun getTaskWithSubtasks(taskId: Long): TaskWithSubtasks {
         return withContext(Dispatchers.IO) {
             try {
                 service.getTaskWithSubtasks(taskId)

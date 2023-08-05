@@ -15,37 +15,37 @@
         android:theme="@style/Theme.House_analysis"
         tools:targetApi="31">
         <activity
-            android:name=".ui.profile.AboutAppActivity"
+            android:name=".presentation.ui.profile.AboutAppActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.profile.CompassActivity"
+            android:name=".presentation.ui.profile.CompassActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.profile.LanguageActivity"
+            android:name=".presentation.ui.profile.LanguageActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.profile.MainAccountActivity"
+            android:name=".presentation.ui.profile.MainAccountActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.additional.SuccessfullyRegisteredActivity"
+            android:name=".presentation.ui.additional.SuccessfullyRegisteredActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.register.SignUpActivity"
+            android:name=".presentation.ui.register.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.password.NewPassword"
+            android:name=".presentation.ui.password.NewPassword"
             android:exported="false" />
         <activity
-            android:name=".ui.password.RestorePassSecond"
+            android:name=".presentation.ui.password.RestorePassSecond"
             android:exported="false" />
         <activity
-            android:name=".ui.register.SignInActivity"
+            android:name=".presentation.ui.register.SignInActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.password.RestorePass"
+            android:name=".presentation.ui.password.RestorePass"
             android:exported="false" />
         <activity
-            android:name=".ui.additional.SplashScreen"
+            android:name=".presentation.ui.additional.SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -54,7 +54,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".presentation.ui.MainActivity"
             android:exported="true" />
     </application>
 

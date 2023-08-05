@@ -18,5 +18,5 @@ object RequestRepository {
     suspend fun getTask(taskId: Long) = taskRepo.getTask(taskId)
     suspend fun getTaskWithSubtasks(taskId: Long) = taskRepo.getTaskWithSubtasks(taskId)
     suspend fun createTask(taskInfo: TaskRequestModel) = taskRepo.createTask(taskInfo)
-    fun deleteTask(taskId: Long) { taskRepo.deleteTask(taskId) }
+    suspend fun deleteTask(taskId: Long) = taskRepo.deleteTask(taskId)
 }

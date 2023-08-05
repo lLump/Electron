@@ -2,9 +2,9 @@ package com.example.house_analysis.data.api.service
 
 import com.example.house_analysis.data.model.request.LoungeFloorModel
 import com.example.house_analysis.data.model.request.TaskRequestModel
+import com.example.house_analysis.data.model.response.Task
 import com.example.house_analysis.data.model.response.TaskWithSubtasks
-import com.example.house_analysis.data.model.response.TasksResponse
-import io.reactivex.Completable
+import com.example.house_analysis.data.model.response.full_task.FullTaskResponse
 import io.reactivex.Observable
 import retrofit2.Response
 import retrofit2.http.Body
@@ -16,16 +16,16 @@ import retrofit2.http.Path
 
 interface TaskApi {
     @POST("tasks")
-    suspend fun createTask(@Body request: TaskRequestModel): TasksResponse
+    suspend fun createTask(@Body request: TaskRequestModel): FullTaskResponse
 
     @GET("tasks/{taskId}")
-    suspend fun getTask(@Path("taskId") taskId: Long): TasksResponse
+    suspend fun getTask(@Path("taskId") taskId: Long): FullTaskResponse
 
     @GET("tasks/user")
-    suspend fun getTasks(): ArrayList<TasksResponse>
+    suspend fun getTasks(): ArrayList<Task>
 
     @DELETE("tasks/{taskId}")
-    fun deleteTask(@Path("taskId") taskId: Long): Completable
+    suspend fun deleteTask(@Path("taskId") taskId: Long)
 
     @PATCH("tasks/{taskId}/subtasks/replace")
     fun replaceFloorAndLoungeForSubtask(@Path("taskId") taskId: Long, @Body request: LoungeFloorModel): Observable<Response<Unit>>

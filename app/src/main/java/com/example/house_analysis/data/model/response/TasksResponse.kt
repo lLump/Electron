@@ -1,37 +1,40 @@
 package com.example.house_analysis.data.model.response
 
-data class TasksResponse(
-    //Additional info when 1 task requested
-    val creator: Creator,
-    val performers: List<Performer>,
-    val marks: List<Mark>,
-    val description: String, //Comment
-    val priority: String,
+import com.example.house_analysis.data.model.response.full_task.Creator
+import com.example.house_analysis.data.model.response.full_task.Mark
+import com.example.house_analysis.presentation.recyclers.tasks.model.TaskInfo
 
-    //All user tasks response
-    val taskId: Long,
-    val title: String,
+data class TasksResponse(
+    val tasks: List<Task>,
+    val totalTasks: Int
+)
+
+data class Task(
     val floorsFrom: Int,
     val floorsTo: Int,
     val loungesFrom: Int,
     val loungesTo: Int,
     val subtasksFrom: Int,
-    val subtasksTo: Int
+    val subtasksTo: Int,
+    val taskId: Long,
+    val title: String
 )
 
-data class Creator(
-    val email: String,
-    val fullname: String,
-    val phone: String
-)
+fun Task.toTaskInfo(): TaskInfo {
+    return TaskInfo(
+        floorsFrom = floorsFrom,
+        floorsTo = floorsTo,
+        loungesFrom = loungesFrom,
+        loungesTo = loungesTo,
+        subtasksFrom = subtasksFrom,
+        subtasksTo = subtasksTo,
+        taskId = taskId,
+        title = title,
 
-data class Performer(
-    val email: String,
-    val fullname: String,
-    val phone: String
-)
-
-data class Mark(
-    val context: String,
-    val id: Long
-)
+        //Additional info
+        priority = "",
+        creator = Creator("", "", ""),
+        description = "",
+        marks = listOf<Mark>()
+    )
+}

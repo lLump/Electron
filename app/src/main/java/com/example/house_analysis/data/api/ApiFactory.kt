@@ -29,14 +29,10 @@ object ApiFactory {
         .build()
 
     fun createTaskApi(): TaskApi {
-        return createService(TaskApi::class.java)
+        return retrofit.create(TaskApi::class.java)
     }
 
     fun createAuthApi(): AuthApi {
-        return createService(AuthApi::class.java)
-    }
-
-    private fun <T> createService(serviceClass: Class<T>): T {
-        return retrofit.create(serviceClass)
+        return retrofit.create(AuthApi::class.java)
     }
 }
