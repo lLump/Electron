@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.SignInActivity">
+    tools:context=".ui.register.SignInActivity">
 
     <ImageView
         android:id="@+id/backButton"
@@ -22,7 +22,7 @@
         android:id="@+id/accountLogin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/accountLogin"
+        android:text="@string/account_login"
         android:textStyle="bold"
         android:textColor="@color/black"
         android:textSize="25sp"
@@ -35,7 +35,7 @@
         android:layout_width="290dp"
         android:layout_marginHorizontal="15dp"
         android:layout_height="wrap_content"
-        android:text="@string/ifUHaveAccount"
+        android:text="@string/do_you_have_account"
         android:textColor="@color/black"
         android:textSize="15sp"
         app:layout_constraintTop_toBottomOf="@id/accountLogin"
@@ -59,7 +59,7 @@
         android:id="@+id/editTextMail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="@string/email"
+        android:hint="@string/text_email"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -83,7 +83,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="@string/password"
+        android:hint="@string/text_password"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -92,18 +92,38 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <CheckBox
+        android:id="@+id/isRememberPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:buttonTint="@color/main_color"
+        app:layout_constraintBottom_toTopOf="@+id/buttonSignIn"
+        app:layout_constraintStart_toStartOf="@+id/editTextPassword"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPassword"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/rememberPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/is_remember_password"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/isRememberPassword"
+        app:layout_constraintStart_toEndOf="@+id/isRememberPassword"
+        app:layout_constraintTop_toTopOf="@+id/isRememberPassword" />
+
     <TextView
         android:id="@+id/forgotPassword"
-        android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingStart="20dp"
+        android:text="@string/forgot_password"
         android:textColor="@color/main_color"
-        android:text="@string/forgotPassword"
-        app:layout_constraintTop_toBottomOf="@id/editTextPassword"
-        app:layout_constraintEnd_toEndOf="@+id/editTextPassword"/>
+        app:layout_constraintEnd_toEndOf="@+id/editTextPassword"
+        app:layout_constraintTop_toTopOf="@id/rememberPassword" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonSignIn"
         style="@style/buttonSignUp"
         android:layout_width="match_parent"
@@ -111,7 +131,7 @@
         android:layout_marginTop="40dp"
         android:padding="13dp"
         android:backgroundTint="@color/main_color"
-        android:text="@string/signIn"
+        android:text="@string/sign_in"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/forgotPassword"/>
@@ -130,14 +150,14 @@
             android:layout_marginRight="@dimen/marginTopForInputs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/uHaveAccount"
+            android:text="@string/do_not_have_account"
             android:textColor="@color/black"/>
         <TextView
             android:id="@+id/signUpTextView"
             android:textColor="@color/main_color"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/signUp"/>
+            android:text="@string/sign_up"/>
 
     </LinearLayout>
 

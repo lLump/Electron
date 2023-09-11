@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SuccessfullyRegisteredActivity">
+    tools:context=".ui.additional.SuccessfullyRegisteredActivity">
 
     <ImageView
         android:id="@+id/icon_success"
@@ -13,7 +13,7 @@
         android:layout_marginTop="114dp"
         android:layout_width="match_parent"
         android:layout_height="350dp"
-        android:src="@drawable/f_icon"/>
+        android:src="@drawable/image_successful_registration"/>
 
 
     <TextView
@@ -23,7 +23,7 @@
         android:gravity="center"
         android:layout_marginBottom="25dp"
         android:layout_height="wrap_content"
-        android:text="@string/everythingWorkedOut"
+        android:text="@string/all_worked_out"
         android:textSize="24sp"
         android:textColor="@color/black"
         android:textStyle="bold"/>
@@ -34,13 +34,13 @@
         android:gravity="center"
         android:layout_height="wrap_content"
         android:layout_marginBottom="35dp"
-        android:text="@string/activateAccount"
+        android:text="@string/activate_account"
         android:textSize="16sp"
         android:textColor="@color/black" />
     <Button
         android:id="@+id/btn_success"
         android:layout_width="match_parent"
-        android:text="@string/itsClear"
+        android:text="@string/text_get_it"
         style="@style/buttonSignUp"
         android:textSize="18sp"
         android:inputType="textCapWords"

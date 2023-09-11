@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".presentation.ui.MainActivity">
 
     <TextView
         android:id="@+id/textWelcome"
@@ -45,7 +45,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textName"/>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonSignUp"
         style="@style/buttonSignUp"
         android:layout_width="match_parent"
@@ -53,7 +53,7 @@
         android:layout_marginBottom="12dp"
         android:backgroundTint="@color/main_color"
         android:padding="13dp"
-        android:text="@string/signUp"
+        android:text="@string/sign_up"
         android:textSize="17sp"
         android:textStyle="bold"
         android:textAllCaps="false"
@@ -61,16 +61,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-    </Button>
+    </androidx.appcompat.widget.AppCompatButton>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonSignIn"
         style="@style/buttonSignIn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="60dp"
         android:padding="13dp"
-        android:text="@string/signIn"
+        android:text="@string/sign_in"
         android:textAllCaps="false"
         android:textColor="@color/main_color"
         android:textSize="17sp"
@@ -80,7 +80,7 @@
         app:layout_constraintHorizontal_bias="0.433"
         app:layout_constraintStart_toStartOf="parent">
 
-    </Button>
+    </androidx.appcompat.widget.AppCompatButton>
 
     <ImageView
         android:layout_width="wrap_content"

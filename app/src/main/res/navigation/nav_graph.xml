@@ -3,26 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/task_fragment">
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.example.house_analysis.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
+        android:id="@+id/task_fragment"
+        android:label="TASK NAV_GRAPH"
+        android:name="com.example.house_analysis.ui.profile.bottom_nav.SubtasksFragment"
+        tools:layout="@layout/fragment_tasks">
 
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            app:destination="@id/subtask_fragment" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.example.house_analysis.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        android:id="@+id/subtask_fragment"
+        android:name="com.example.house_analysis.ui.profile.bottom_nav.TasksFragment"
+        android:label="SUBTASK NAV_GRAPH"
+        tools:layout="@layout/fragment_subtasks">
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            app:destination="@id/task_fragment" />
     </fragment>
 </navigation>
