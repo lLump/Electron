@@ -1,4 +1,4 @@
-package com.example.house_analysis.data.model.response.full_task
+package com.example.house_analysis.data.model.response.additional
 
 data class Performer(
     val email: String,

@@ -9,7 +9,7 @@ import com.example.house_analysis.data.model.response.toTaskInfo
 import com.example.house_analysis.domain.TaskDataHelper
 import com.example.house_analysis.presentation.recyclers.tasks.model.view.SlideView
 import com.example.house_analysis.presentation.recyclers.tasks.model.RecyclerItem
-import com.example.house_analysis.presentation.recyclers.tasks.model.TaskInfo
+import com.example.house_analysis.domain.model.TaskInfo
 import com.example.house_analysis.presentation.recyclers.tasks.model.view.TaskView
 
 class TaskListAdapter :
@@ -44,6 +44,7 @@ class TaskListAdapter :
             val mainItem = uiItems[mainItemPos].getTask()
             slideItemView.apply {
                 //flag (priority) TODO
+
                 apartments?.text =
                     "${mainItem.subtasksFrom} - ${mainItem.subtasksTo}"
                 floors?.text = "${task.floorsFrom} - ${task.floorsTo}"
@@ -56,12 +57,11 @@ class TaskListAdapter :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        var viewHolder: RecyclerView.ViewHolder? = null
-        when (viewType) {
-            VIEW_ITEM -> viewHolder = TaskHolder(TaskView(parent.context))
-            VIEW_SLIDE -> viewHolder = SlideInfoHolder(SlideView(parent.context))
+        return when (viewType) {
+            VIEW_ITEM -> TaskHolder(TaskView(parent.context))
+            VIEW_SLIDE -> SlideInfoHolder(SlideView(parent.context))
+            else -> throw Exception("Unknown type of ViewHolder")
         }
-        return viewHolder!!
     }
 
     override fun getItemCount() = uiItems.size
@@ -109,13 +109,6 @@ class TaskListAdapter :
                 }
             } else checkedTasksId.remove(task.taskId)
         }
-
-//    private fun ArrayList<RecyclerItem>.getItem(position: Int): RecyclerItem {
-//        return when (val item = this[position]) {
-//            is RecyclerItem.TaskItem -> item
-//            is RecyclerItem.SlideItem -> item
-//        }
-//    }
 
     private fun RecyclerItem.getTask(): TaskInfo {
         return when (this) {
@@ -191,7 +184,6 @@ class TaskListAdapter :
                 }
             }
         }
-
     }
 
     companion object {

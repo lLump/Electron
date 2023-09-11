@@ -1,10 +1,9 @@
 package com.example.house_analysis.data.api.service
 
-import com.example.house_analysis.data.model.request.UserLoginModel
-import com.example.house_analysis.data.model.request.UserRegisterModel
+import com.example.house_analysis.data.model.request.auth.UserLoginModel
+import com.example.house_analysis.data.model.request.auth.UserRegisterModel
 import com.example.house_analysis.data.model.response.TokenResponse
 import io.reactivex.Observable
-import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.POST

@@ -10,7 +10,7 @@ import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.lifecycleScope
 import com.example.house_analysis.R
 import com.example.house_analysis.databinding.ActivitySignInBinding
-import com.example.house_analysis.data.model.request.UserLoginModel
+import com.example.house_analysis.data.model.request.auth.UserLoginModel
 import com.example.house_analysis.domain.usecase.auth.LoginUseCase
 import com.example.house_analysis.presentation.ui.password.RestorePass
 import com.example.house_analysis.presentation.ui.profile.MainAccountActivity

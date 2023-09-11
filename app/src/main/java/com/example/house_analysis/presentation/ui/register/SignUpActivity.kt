@@ -12,7 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.house_analysis.R
 import com.example.house_analysis.databinding.ActivitySignUpBinding
 import com.example.house_analysis.data.repository.RequestRepository
-import com.example.house_analysis.data.model.request.UserRegisterModel
+import com.example.house_analysis.data.model.request.auth.UserRegisterModel
 import com.example.house_analysis.presentation.ui.additional.SuccessfullyRegisteredActivity
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.coroutines.launch

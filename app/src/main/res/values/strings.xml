@@ -81,6 +81,7 @@
     <string name="add_tasks">Добавляйте списки задач и отслеживайте их выполнение</string>
     <string name="combine_floor_and_lounge">Объединить в этаж и подъезд</string>
     <string name="change_priority">Изменить приоритет</string>
+    <string name="change_status">Изменить состояние</string>
     <string name="show_on_the_map">Показать на карте</string>
     <string name="set_signal">Установить сигнал</string>
 

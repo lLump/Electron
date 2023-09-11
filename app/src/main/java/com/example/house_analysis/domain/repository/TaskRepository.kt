@@ -2,7 +2,7 @@ package com.example.house_analysis.domain.repository
 
 import com.example.house_analysis.data.model.request.TaskRequestModel
 import com.example.house_analysis.data.model.response.Task
-import com.example.house_analysis.data.model.response.TaskWithSubtasks
+import com.example.house_analysis.data.model.response.subtasks.TaskWithSubtasksResponse
 import com.example.house_analysis.data.model.response.full_task.FullTaskResponse
 
 interface TaskRepository {
@@ -15,6 +15,6 @@ interface TaskRepository {
 
     suspend fun getTasks(): ArrayList<Task>
 
-    suspend fun getTaskWithSubtasks(taskId: Long): TaskWithSubtasks
+    suspend fun getTaskWithSubtasks(taskId: Long): TaskWithSubtasksResponse
 
 }

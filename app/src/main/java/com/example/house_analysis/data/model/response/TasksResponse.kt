@@ -1,12 +1,12 @@
 package com.example.house_analysis.data.model.response
 
-import com.example.house_analysis.data.model.response.full_task.Creator
-import com.example.house_analysis.data.model.response.full_task.Mark
-import com.example.house_analysis.presentation.recyclers.tasks.model.TaskInfo
+import com.example.house_analysis.data.model.response.additional.Creator
+import com.example.house_analysis.data.model.response.additional.Mark
+import com.example.house_analysis.domain.model.TaskInfo
 
 data class TasksResponse(
-    val tasks: List<Task>,
-    val totalTasks: Int
+    val totalTasks: Int,
+    val tasks: List<Task>
 )
 
 data class Task(

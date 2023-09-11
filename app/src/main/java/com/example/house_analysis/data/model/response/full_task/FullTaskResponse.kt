@@ -1,6 +1,9 @@
 package com.example.house_analysis.data.model.response.full_task
 
-import com.example.house_analysis.presentation.recyclers.tasks.model.TaskInfo
+import com.example.house_analysis.data.model.response.additional.Creator
+import com.example.house_analysis.data.model.response.additional.Mark
+import com.example.house_analysis.data.model.response.additional.Performer
+import com.example.house_analysis.domain.model.TaskInfo
 
 data class FullTaskResponse(
     val address: String?,
@@ -30,15 +33,15 @@ fun FullTaskResponse.toTaskInfo(): TaskInfo {
         floorsTo = floorsTo,
         loungesFrom = loungesFrom,
         loungesTo = loungesTo,
-        subtasksFrom = 123,
-        subtasksTo = 321,
+        subtasksFrom = 123, // Не приходит с этого запроса
+        subtasksTo = 321,   // Такой же
         taskId = taskId,
         title = title,
 
         //Additional info
-        priority = priority?: "Без приоритета",
+        priority = priority ?: "Без приоритета",
         creator = creator,
-        description = description?: "Нет описания",
+        description = description ?: "Нет описания",
         marks = marks
     )
 }

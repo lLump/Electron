@@ -1,4 +1,4 @@
-package com.example.house_analysis.data.model.request
+package com.example.house_analysis.data.model.request.auth
 
 data class UserRegisterModel(
     val fullname: String,

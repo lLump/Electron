@@ -13,7 +13,7 @@ class SubtaskView(context: Context): LinearLayout(context) {
     var number: TextView? = null
     var flag: ImageView? = null
     var comment: ImageView? = null
-    var importance: TextView? = null
+    var priority: TextView? = null
     var hash: ImageView? = null
 
     init {
@@ -24,7 +24,7 @@ class SubtaskView(context: Context): LinearLayout(context) {
         number = findViewById(R.id.subtask_number)
         flag = findViewById(R.id.sub_flag)
         comment = findViewById(R.id.sub_comment)
-        importance = findViewById(R.id.sub_importance)
+        priority = findViewById(R.id.sub_importance)
         hash = findViewById(R.id.sub_hash)
     }
 }

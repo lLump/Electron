@@ -1,8 +1,7 @@
-package com.example.house_analysis.presentation.recyclers.tasks.model
+package com.example.house_analysis.domain.model
 
-import com.example.house_analysis.data.model.response.Task
-import com.example.house_analysis.data.model.response.full_task.Creator
-import com.example.house_analysis.data.model.response.full_task.Mark
+import com.example.house_analysis.data.model.response.additional.Creator
+import com.example.house_analysis.data.model.response.additional.Mark
 
 data class TaskInfo (
     //Main Info

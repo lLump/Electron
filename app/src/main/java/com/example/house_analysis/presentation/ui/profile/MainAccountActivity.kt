@@ -1,9 +1,7 @@
 package com.example.house_analysis.presentation.ui.profile
 
-import android.app.Dialog
 import android.graphics.PorterDuff
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -12,6 +10,7 @@ import com.example.house_analysis.databinding.ActivityAccountMainBinding
 import com.example.house_analysis.presentation.ui.profile.bottom_nav.AddFragment
 import com.example.house_analysis.presentation.ui.profile.bottom_nav.TasksFragment
 import com.example.house_analysis.presentation.ui.profile.bottom_nav.SearchFragment
+import com.example.house_analysis.presentation.ui.profile.bottom_nav.SubtasksFragment
 import com.example.house_analysis.presentation.ui.profile.top_nav.ProfileFragment
 import com.example.house_analysis.presentation.ui.profile.top_nav.SettingsFragment
 
@@ -110,7 +109,7 @@ class MainAccountActivity : AppCompatActivity() {
 
         when (currentFragment) {
             is TasksFragment -> currentFragment.openTaskDotsDialog()
-//            is SubtasksFragment ->
+            is SubtasksFragment -> currentFragment.openSubtaskDotsDialog(R.layout.dialog_bottom_subtask)
         }
 
         return true

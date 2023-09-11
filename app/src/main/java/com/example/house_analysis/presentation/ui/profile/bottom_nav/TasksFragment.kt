@@ -91,7 +91,7 @@ class TasksFragment : Fragment(), DotDialogListener {
 
     }
 
-    private fun isMainViewAt(pos: Int): Boolean { //Check for type of recyclerItem
+    private fun isMainViewAt(pos: Int): Boolean { //Check for type of recyclerItem (view)
         val viewType = recycler.adapter?.getItemViewType(pos)
         return viewType == 0
     }
@@ -152,14 +152,8 @@ class TasksFragment : Fragment(), DotDialogListener {
 
     override fun onTaskDialogAction(action: DotsAction) {
         when (action) {
-            DotsAction.MANAGER -> nothing() //TODO
-            DotsAction.PHONE -> nothing()
-            DotsAction.COMMENT -> nothing()
-            DotsAction.LABEL -> nothing()
-            DotsAction.EDIT -> nothing()
             DotsAction.DELETE -> (recycler.adapter as TaskListAdapter).getInterface().deleteTasks()
+            else -> {}
         }
     }
-
-    private fun nothing() {}
 }

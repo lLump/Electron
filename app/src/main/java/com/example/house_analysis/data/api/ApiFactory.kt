@@ -1,6 +1,7 @@
 package com.example.house_analysis.data.api
 
 import com.example.house_analysis.data.api.service.AuthApi
+import com.example.house_analysis.data.api.service.SubtaskApi
 import com.example.house_analysis.data.api.service.TaskApi
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -18,8 +19,7 @@ object ApiFactory {
                 .header("Authorization", "Bearer $token")
                 .build()
             chain.proceed(newRequest)
-        }
-        .build()
+        }.build()
 
     private val retrofit = Retrofit.Builder()
         .client(okHttpClient)
@@ -34,5 +34,9 @@ object ApiFactory {
 
     fun createAuthApi(): AuthApi {
         return retrofit.create(AuthApi::class.java)
+    }
+
+    fun createSubtaskApi(): SubtaskApi {
+        return retrofit.create(SubtaskApi::class.java)
     }
 }

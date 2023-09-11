@@ -2,11 +2,10 @@ package com.example.house_analysis.data.repository
 
 import com.example.house_analysis.data.provider.RepositoryProvider
 import com.example.house_analysis.data.model.request.TaskRequestModel
-import com.example.house_analysis.data.model.request.UserLoginModel
-import com.example.house_analysis.data.model.request.UserRegisterModel
+import com.example.house_analysis.data.model.request.auth.UserRegisterModel
 
 object RequestRepository {
-    private val taskRepo = RepositoryProvider.provideTaskProvider()
+    private val taskRepo = RepositoryProvider.provideTaskRepository()
     private val authRepo = RepositoryProvider.provideAuthRepository()
 
 //    private val postRepo = PostRequestsRepo(taskRepo)
